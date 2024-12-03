@@ -12,11 +12,45 @@
 <html>
 <head>
     <meta charset=UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="${contextPath}/static/css/user/login.css">
+    <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
     <main>
-    <%-- 내용작성 --%>
+        <div class="login-container">
+            <h1>로그인</h1>
+            <form action="${pageContext.request.contextPath}/login" method="post" id="loginForm">
+                <div class="form-group-id">
+                    <label for="userId">아이디</label>
+                    <input type="text" id="userId" name="userId" required placeholder="아이디를 입력하세요">
+                </div>
+
+                <div class="form-group-password">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+                </div>
+
+                <div class="form-group-memory">
+                    <input type="checkbox" id="idMemory" name="idMemory" required>
+                    <label for="idmemory">아이디 기억</label>
+                </div>
+
+                <div class="form-group-login">
+                    <button type="submit">로그인</button>
+                </div>
+
+                <div class="form-group-join">
+                    <a href="${pageContext.request.contextPath}/join">회원가입</a>
+                </div>
+
+                <div class="form-group-forgot">
+                    <a href="${pageContext.request.contextPath}/forgot">아이디/비밀번호 찾기</a>
+                </div>
+            </form>
+        </div>
+        <script src="${pageContext.request.contextPath}/static/js/user/login.js"></script>
     </main>
 </body>
 </html>

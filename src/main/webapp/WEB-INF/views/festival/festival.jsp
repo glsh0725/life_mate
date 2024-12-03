@@ -12,7 +12,10 @@
 <html>
 <head>
     <meta charset=UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>축제정보</title>
+    <link rel="stylesheet" href="${contextPath}/static/css/festival/festival.css">
+    <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
     <main>

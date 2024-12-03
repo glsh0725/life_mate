@@ -10,5 +10,7 @@
 
 
 <footer>
-
+    <div class="footer-container">
+        <p></p>
+    </div>
 </footer>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fs.four.dropout.user.dao.JoinDAO">
+    <resultMap id="usrResult" type="userVO">
+        <result property="usr_id" column="usr_id" />
+        <result property="usr_password" column="usr_password" />
+        <result property="usr_nickname" column="usr_nickname" />
+        <result property="usr_email" column="usr_email" />
+        <result property="usr_join_date" column="usr_join_date" />
+    </resultMap>
+
+    <select id="selectAllUserList" resultMap="usrResult">
+        <![CDATA[
+        select *
+        from lm_user
+        order by usr_join_date desc
+        ]]>
+    </select>
+
+    <insert id="insertUser" parameterType="userVO">
+        <![CDATA[
+        insert into lm_user(usr_id, usr_password, usr_nickname, usr_email)
+        values (#{usr_id}, #{usr_password}, #{usr_nickname}, #{usr_email})
+        ]]>
+    </insert>
+
+</mapper>

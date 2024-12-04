@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false"  %>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+         pageEncoding="UTF-8"
+         isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <%
-  request.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
 %>
 
 
@@ -18,8 +18,26 @@
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
-    <main>
+<main>
     <%-- 내용작성 --%>
-    </main>
+
+    <table border="1" align="center" width="80%">
+        <tr align="center" bgcolor="#ff69b4">
+            <td><b>아이디</b></td>
+            <td><b>비밀번호</b></td>
+            <td><b>이메일</b></td>
+            <td><b>가입일</b></td>
+        </tr>
+
+        <c:forEach var="user" items="${usersList}">
+            <tr align="center">
+                <td>${user.usr_id}</td>
+                <td>${user.usr_password}</td>
+                <td>${user.usr_email}</td>
+                <td>${user.usr_join_date}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</main>
 </body>
 </html>

@@ -23,13 +23,13 @@
             <h1>회원가입</h1>
             <form action="${pageContext.request.contextPath}/join" method="post" id="joinForm">
                 <div class="form-group-userId">
-                    <label for="userId">아이디</label>
-                    <input type="text" id="userId" name="userId" required minlength="6" maxlength="12">
+                    <label for="usr_id">아이디</label>
+                    <input type="text" id="usr_id" name="usr_id" required minlength="6" maxlength="12">
                 </div>
 
                 <div class="form-group-password">
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" required minlength="8" maxlength="16">
+                    <label for="usr_password">비밀번호</label>
+                    <input type="password" id="usr_password" name="usr_password" required minlength="8" maxlength="16">
                 </div>
 
                 <div class="form-group-confirmPassword">
@@ -38,13 +38,13 @@
                 </div>
 
                 <div class="form-group-nickname">
-                    <label for="nickname">닉네임</label>
-                    <input type="text" id="nickname" name="nickname" required minlength="1" maxlength="8">
+                    <label for="usr_nickname">닉네임</label>
+                    <input type="text" id="usr_nickname" name="usr_nickname" required minlength="1" maxlength="8">
                 </div>
 
                 <div class="form-group-email">
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="usr_email">이메일</label>
+                    <input type="email" id="usr_email" name="usr_email" required>
                 </div>
 
                 <div class="form-group-emailOptOut">

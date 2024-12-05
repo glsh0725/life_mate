@@ -1,0 +1,44 @@
+#calendar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#calendar table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#calendar th,
+#calendar td {
+    width: 14.28%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#calendar th {
+    background-color: #f5f5f5;
+}
+
+#calendar td:hover {
+    background-color: #eef;
+    cursor: pointer;
+}
+
+.festival-list {
+    list-style: none;
+    padding: 0;
+}
+
+.festival-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}

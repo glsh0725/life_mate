@@ -20,7 +20,7 @@
 <body>
     <main>
     <div class="board-container">
-        <%-- 예제 데이터 --%>
+
         <c:forEach var="post" items="${postList}">
             <div class="board-card">
                 <div class="image-placeholder">이미지</div>
@@ -38,7 +38,7 @@
         </c:forEach>
     </div>
 
-    <%-- 페이징 --%>
+    <%-- 페이지네이션 --%>
     <div class="pagination">
         <button onclick="location.href='boardList.jsp?page=${prevPage}'">이전</button>
         <c:forEach var="page" items="${pages}">

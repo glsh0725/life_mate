@@ -9,4 +9,8 @@ public class CommunityControllerImpl {
     public String communityPage() {
         return "community/community";
     }
+    @GetMapping("/community/save")
+    public String communitySave() {
+        return "community/save";
+    }
 }

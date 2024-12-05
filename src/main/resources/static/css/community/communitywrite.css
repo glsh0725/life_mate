@@ -29,8 +29,8 @@ label {
     color: #555;
 }
 
-input, select, textarea {
-    width: 100%;
+input, textarea {
+    width: 70%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -50,7 +50,7 @@ input:focus, select:focus, textarea:focus {
 
 .form-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: between;
 }
 
 button {
@@ -67,10 +67,21 @@ button[type="submit"] {
 }
 
 button[type="button"] {
+    justify-content: center;
     background-color: #ddd;
     color: black;
 }
 
 button:hover {
     opacity: 0.9;
+}
+
+select {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
 }

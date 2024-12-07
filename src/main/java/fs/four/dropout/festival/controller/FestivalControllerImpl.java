@@ -32,7 +32,7 @@ public class FestivalControllerImpl implements FestivalController {
             date = sdf.format(new Date());
         }
 
-        int pageSize = 9;
+        int pageSize = 12;
         int pageGroupSize = 10;
 
         List<FestivalVO> festivals;

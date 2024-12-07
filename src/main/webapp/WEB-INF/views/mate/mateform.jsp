@@ -85,7 +85,14 @@
         <h3>여행지 리스트(Test)</h3>
         <section class="mate-section">
             <ul class="mate-list">
+                <c:forEach var="mate" items="${mateList}">
+                    <li class="mate-item">
+                        <div class="mate-title">${mate.facilityName}</div>
+                        <div class="mate-dates">${mate.phoneNumber}</div>
+                        <div class="mate-address">${mate.roadNameAddress}</div>
+                    </li>
 
+                </c:forEach>
             </ul>
 
         </section>

@@ -21,23 +21,28 @@
 <main>
     <%-- 내용작성 --%>
 
-    <table border="1" align="center" width="80%">
-        <tr align="center" bgcolor="#ff69b4">
-            <td><b>아이디</b></td>
-            <td><b>비밀번호</b></td>
-            <td><b>이메일</b></td>
-            <td><b>가입일</b></td>
-        </tr>
-
-        <c:forEach var="user" items="${usersList}">
+    <form action="${pageContext.request.contextPath}/admin" method="get" id="adminForm">
+        <table border="1" align="center" width="80%">
             <tr align="center">
-                <td>${user.usr_id}</td>
-                <td>${user.usr_password}</td>
-                <td>${user.usr_email}</td>
-                <td>${user.usr_join_date}</td>
+                <td><b>아이디</b></td>
+                <td><b>비밀번호</b></td>
+                <td><b>닉네임</b></td>
+                <td><b>이메일</b></td>
+                <td><b>이메일 수신</b></td>
+                <td><b>가입일</b></td>
             </tr>
-        </c:forEach>
-    </table>
+
+            <c:forEach var="user" items="${usersList}">
+                <tr align="center">
+                    <td>${user.usr_id}</td>
+                    <td>${user.usr_password}</td>
+                    <td>${user.usr_nickname}</td>
+                    <td>${user.usr_email}</td>
+                    <td>${user.usr_email_optout}</td>
+                    <td>${user.usr_join_date}</td>
+                </tr>
+            </c:forEach>
+        </table>
 </main>
 </body>
 </html>

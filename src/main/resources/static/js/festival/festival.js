@@ -4,6 +4,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const monthSelect = document.getElementById("month-select");
     const prevMonthButton = document.createElement("button");
     const nextMonthButton = document.createElement("button");
+    const selectedDateInput = document.getElementById("selected-date");
+
+    const modal = document.getElementById("festival-modal");
+    const closeModalButton = modal.querySelector(".close-btn");
+
+    const modalTitle = document.getElementById("modal-title");
+    const modalOpar = document.getElementById("modal-opar");
+    const modalStartDate = document.getElementById("modal-start-date");
+    const modalEndDate = document.getElementById("modal-end-date");
+    const modalDescription = document.getElementById("modal-description");
+    const modalMnnstNm = document.getElementById("modal-mnnstNm");
+    const modalAuspcInsttNm = document.getElementById("modal-auspcInsttNm");
+    const modalSuprtInsttNm = document.getElementById("modal-suprtInsttNm");
+    const modalPhoneNumber = document.getElementById("modal-phoneNumber");
+    const modalHomepage = document.getElementById("modal-homepage");
+    const modalRelateInfo = document.getElementById("modal-relateInfo");
+    const modalRdnmadr = document.getElementById("modal-rdnmadr");
+    const modalLnmadr = document.getElementById("modal-lnmadr");
+    const modalReferenceDate = document.getElementById("modal-referenceDate");
 
     prevMonthButton.textContent = "이전 달";
     nextMonthButton.textContent = "다음 달";
@@ -12,8 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
     calendarControls.appendChild(prevMonthButton);
     calendarControls.appendChild(nextMonthButton);
 
-    function populateYearAndMonth() {
-        const currentYear = new Date().getFullYear();
+    function populateYearAndMonth(selectedDate) {
+        const currentYear = new Date(selectedDate).getFullYear();
+        const currentMonth = new Date(selectedDate).getMonth();
+
         for (let i = currentYear - 5; i <= currentYear + 5; i++) {
             const option = document.createElement("option");
             option.value = i;
@@ -28,10 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
             option.textContent = i + 1;
             monthSelect.appendChild(option);
         }
-        monthSelect.value = new Date().getMonth();
+        monthSelect.value = currentMonth;
     }
 
-    function generateCalendar(year, month) {
+    function generateCalendar(year, month, selectedDate) {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
 
@@ -50,51 +71,53 @@ document.addEventListener("DOMContentLoaded", function () {
             <tbody>`;
 
         let day = 1;
-        let rowCreated = false;
+        let hasContent = false;
 
         for (let i = 0; i < 6; i++) {
             let rowHtml = "<tr>";
-            let cellsCreated = false;
+            hasContent = false;
+
             for (let j = 0; j < 7; j++) {
+                const currentDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
                 if (i === 0 && j < firstDay || day > daysInMonth) {
                     rowHtml += "<td></td>";
                 } else {
-                    rowHtml += `<td class="calendar-day" data-date="${year}-${month + 1}-${day}">${day}</td>`;
+                    const isSelected = selectedDate === currentDate ? "selected" : "";
+                    rowHtml += `<td class="calendar-day ${isSelected}" data-date="${currentDate}">${day}</td>`;
                     day++;
-                    cellsCreated = true;
+                    hasContent = true;
                 }
             }
+
             rowHtml += "</tr>";
-            if (cellsCreated) {
+            if (hasContent) {
                 html += rowHtml;
-                rowCreated = true;
             }
         }
         html += "</tbody></table>";
+        calendar.innerHTML = html;
 
-        if (rowCreated) {
-            calendar.innerHTML = html;
-        }
-
-        const days = document.querySelectorAll(".calendar-day");
-        days.forEach(day => {
+        document.querySelectorAll(".calendar-day").forEach(day => {
             day.addEventListener("click", function () {
                 const selectedDate = this.dataset.date;
+                selectedDateInput.value = selectedDate;
                 fetchFestivalsByDate(selectedDate);
             });
         });
     }
 
     function fetchFestivalsByDate(date) {
-        window.location.href = `${contextPath}/festival?date=${date}`;
+        const url = `${contextPath}/festival?date=${date}`;
+        window.location.href = url;
     }
 
     yearSelect.addEventListener("change", function () {
-        generateCalendar(Number(yearSelect.value), Number(monthSelect.value));
+        generateCalendar(Number(yearSelect.value), Number(monthSelect.value), selectedDateInput.value);
     });
 
     monthSelect.addEventListener("change", function () {
-        generateCalendar(Number(yearSelect.value), Number(monthSelect.value));
+        generateCalendar(Number(yearSelect.value), Number(monthSelect.value), selectedDateInput.value);
     });
 
     prevMonthButton.addEventListener("click", function () {
@@ -110,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         monthSelect.value = currentMonth;
         yearSelect.value = currentYear;
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, selectedDateInput.value);
     });
 
     nextMonthButton.addEventListener("click", function () {
@@ -126,10 +149,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
         monthSelect.value = currentMonth;
         yearSelect.value = currentYear;
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, selectedDateInput.value);
     });
 
-    populateYearAndMonth();
-    const today = new Date();
-    generateCalendar(today.getFullYear(), today.getMonth());
+    const today = new Date(selectedDateInput.value || new Date());
+    populateYearAndMonth(today);
+    generateCalendar(today.getFullYear(), today.getMonth(), selectedDateInput.value);
+
+    document.querySelectorAll(".festival-item").forEach((item, index) => {
+        item.addEventListener("click", function () {
+            const festival = window.festivalData[index];
+
+            modalTitle.textContent = festival.fstvlNm;
+            modalOpar.textContent = festival.opar || "N/A";
+            modalStartDate.textContent = festival.fstvlStartDate;
+            modalEndDate.textContent = festival.fstvlEndDate;
+            modalDescription.textContent = festival.fstvlCo || "N/A";
+            modalMnnstNm.textContent = festival.mnnstNm || "N/A";
+            modalAuspcInsttNm.textContent = festival.auspcInsttNm || "N/A";
+            modalSuprtInsttNm.textContent = festival.suprtInsttNm || "N/A";
+            modalPhoneNumber.textContent = festival.phoneNumber || "N/A";
+            modalHomepage.textContent = festival.homepageUrl || "N/A";
+            modalHomepage.href = festival.homepageUrl || "#";
+            modalRelateInfo.textContent = festival.relateInfo || "N/A";
+            modalRdnmadr.textContent = festival.rdnmadr || "N/A";
+            modalLnmadr.textContent = festival.lnmadr || "N/A";
+            modalReferenceDate.textContent = festival.referenceDate || "N/A";
+
+            modal.style.display = "block";
+        });
+    });
+
+    closeModalButton.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
 });

@@ -3,6 +3,7 @@ package fs.four.dropout.festival.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fs.four.dropout.festival.vo.FestivalVO;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -23,6 +24,7 @@ public class FestivalServiceImpl implements FestivalService {
             + "&numOfRows=100&type=json";
 
     @Override
+    @Cacheable(value = "festivals", key = "'allFestivals'")
     public List<FestivalVO> getAllFestivals() {
         List<FestivalVO> allFestivals = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -67,6 +69,7 @@ public class FestivalServiceImpl implements FestivalService {
     }
 
     @Override
+    @Cacheable(value = "festivals", key = "'page_' + #page + '_size_' + #pageSize")
     public List<FestivalVO> getFestivalsByPage(int page, int pageSize) {
         List<FestivalVO> allFestivals = getAllFestivals();
         int fromIndex = (page - 1) * pageSize;
@@ -78,6 +81,7 @@ public class FestivalServiceImpl implements FestivalService {
     }
 
     @Override
+    @Cacheable(value = "festivals", key = "'date_' + #date")
     public List<FestivalVO> getFestivalsByDate(String date) {
         List<FestivalVO> filteredFestivals = new ArrayList<>();
         try {
@@ -98,6 +102,7 @@ public class FestivalServiceImpl implements FestivalService {
     }
 
     @Override
+    @Cacheable(value = "festivals", key = "'date_' + #date + '_address_' + #address")
     public List<FestivalVO> getFestivalsByDateAndAddress(String date, String address) {
         List<FestivalVO> filteredFestivals = new ArrayList<>();
         try {

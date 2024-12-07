@@ -19,6 +19,7 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private UserVO userVO;
 
+    /* 회원 관리 기능 */
     @Override
     public List listUsers() throws Exception {
         List usersList = null;

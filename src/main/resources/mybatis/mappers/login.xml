@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fs.four.dropout.user.dao.LoginDAO">
+
+    <select id="UserLogin" resultType="userVO" parameterType="userVO">
+	<![CDATA[
+        select *
+        from lm_user
+        where usr_id = #{usr_id, jdbcType=VARCHAR}
+          and usr_password = #{usr_password, jdbcType=VARCHAR}
+        ]]>
+    </select>
+
+</mapper>

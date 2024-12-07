@@ -1,9 +1,14 @@
 package fs.four.dropout.community.vo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component("communityWriteVO")
 public class CommunityWriteVO {
 
+    private Number com_post_number;
     private String com_title;
     private String com_thumbnail_name;
     private String com_thumbnail_path;
@@ -14,10 +19,19 @@ public class CommunityWriteVO {
     private String com_video_name;
     private String com_video_path;
     private String com_content;
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
     private Date com_post_date;
 
     public CommunityWriteVO() {
 
+    }
+
+    public Number getCom_post_number() {
+        return com_post_number;
+    }
+
+    public void setCom_post_number(Number com_post_number) {
+        this.com_post_number = com_post_number;
     }
 
     public String getCom_title() {

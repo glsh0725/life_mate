@@ -1,51 +1,26 @@
 package fs.four.dropout.mate.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fs.four.dropout.mate.vo.MateVO;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service("mateServiceImpl")
-public class MateServiceImpl {
+public class MateServiceImpl implements MateService {
 
-    // 오픈 Api
-    @GetMapping("/mate")
-    public String mateapilist() {
+    private static final String BASE_API_URL = "http://https://api.odcloud.kr/api/15111391/v1/uddi:19c0c9ab-ac89-486b-b4b8-b026506dc3fa?"
+            + "serviceKey=2hC0NOczqdO6hmbRzTAjPIB%2FyONZvVG2Esgsbr2a3J2nkIDwjAimqU4QHeZLGfldA%2BuMYVh731h6uAc715ss5A%3D%3D"
+            + "page=1&perPage=10&returnType=json";
 
-        StringBuilder result = new StringBuilder();
-        try {
-            String apiUrl = "https://api.odcloud.kr/api/15111391/v1/uddi:19c0c9ab-ac89-486b-b4b8-b026506dc3fa?" +
-                    "serviceKey=2hC0NOczqdO6hmbRzTAjPIB%2FyONZvVG2Esgsbr2a3J2nkIDwjAimqU4QHeZLGfldA%2BuMYVh731h6uAc715ss5A%3D%3D" +
-                    "&page=1" +
-                    "&perPage=10" +
-                    "&returnType=json";
+    @Override
+    public List<MateVO> selectAllMateList() {
+        List<MateVO> allMateList = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        int pageNo = 1;
 
-            URL url = new URL(apiUrl);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8));
-
-            String returnLine;
-            while ((returnLine = bufferedReader.readLine()) != null){
-                result.append(returnLine).append("\n");
-            }
-
-            // 연결 끊어주기
-            urlConnection.disconnect();
-
-        } catch (Exception e) {
-//            throw new RuntimeException(e);
-            e.printStackTrace();
-        }
-
-        return result.toString();
+        return allMateList;
     }
-
 }

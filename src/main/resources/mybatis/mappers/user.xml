@@ -3,11 +3,12 @@
 
 <mapper namespace="fs.four.dropout.user.dao.JoinDAO">
     <resultMap id="usrResult" type="userVO">
-        <result property="usr_id" column="usr_id" />
-        <result property="usr_password" column="usr_password" />
-        <result property="usr_nickname" column="usr_nickname" />
-        <result property="usr_email" column="usr_email" />
-        <result property="usr_join_date" column="usr_join_date" />
+        <result property="usr_id" column="usr_id"/>
+        <result property="usr_password" column="usr_password"/>
+        <result property="usr_nickname" column="usr_nickname"/>
+        <result property="usr_email" column="usr_email"/>
+        <result property="usr_email_optout" column="usr_email_optout"/>
+        <result property="usr_join_date" column="usr_join_date"/>
     </resultMap>
 
     <select id="selectAllUserList" resultMap="usrResult">

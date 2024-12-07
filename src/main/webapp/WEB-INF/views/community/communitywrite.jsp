@@ -23,20 +23,20 @@
         <form action="${contextPath}/community/save" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+                <label for="com_title">제목</label>
+                <input type="text" id="com_title" name="com_title" placeholder="제목을 입력하세요" required>
             </div>
 
 
 
-            <div class="form-group">
-                <label for="thumbnail">대표이미지</label>
-                <input type="file" id="thumbnailimage" name="thumbnailimage" accept="image/*">
-             </div>
+<%--            <div class="form-group">--%>
+<%--                <label for="com_thumbnail_name">대표이미지</label>--%>
+<%--                <input type="file" id="com_thumbnail_name" name="com_thumbnail_name" accept="image/*">--%>
+<%--             </div>--%>
 
             <div class="form-group">
-                <label for="location">지역</label>
-                <input type="text" id="location" name="location" placeholder="지역을 입력하세요 (예: 전라남도 순천시)" required>
+                <label for="com_location">지역</label>
+                <input type="text" id="com_location" name="com_location" placeholder="지역을 입력하세요 (예: 전라남도 순천시)" required>
             </div>
             <div class="form-group">
                 <label for="tag">여행 태그</label>
@@ -61,14 +61,14 @@
             </div>
 
             <div class="form-group">
-                <label for="content">본문 내용</label>
-                <textarea id="content" name="content" rows="8" placeholder="본문 내용을 입력하세요" required></textarea>
+                <label for="com_content">본문 내용</label>
+                <textarea id="com_content" name="com_content" rows="8" placeholder="본문 내용을 입력하세요" required></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="date">작성 날짜</label>
-                <input type="date" id="date" name="date" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" readonly>
-            </div>
+<%--            <div class="form-group">--%>
+<%--                <label for="com_post_date">작성 날짜</label>--%>
+<%--                <input type="date" id="com_post_date" name="com_post_date" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" readonly>--%>
+<%--            </div>--%>
 
             <div class="form-buttons">
                 <button type="submit">작성 완료</button>

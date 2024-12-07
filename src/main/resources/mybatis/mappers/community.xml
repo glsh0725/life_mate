@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fs.four.dropout.community.dao.CommunityWriteDAO">
+    <resultMap id="communityResult" type="communityVO">
+        <result property="com_title" column="com_title"/>
+        <result property="com_location" column="com_location"/>
+        <result property="com_content" column="com_content"/>
+        <result property="com_post_date" column="com_post_date"/>
+    </resultMap>
+
+    <insert id="insertCommunityWrite" parameterType="communityWriteVO" useGeneratedKeys="true" keyProperty="com_post_number">
+        <![CDATA[
+        insert into lm_community(com_post_number, com_title, com_location, com_content)
+        values (post_seq.nextval, #{com_title}, #{com_location}, #{com_content})
+        ]]>
+    </insert>
+
+<!--    <select id="selectAllPostList" resultType="CommunityVO">-->
+<!--        <![CDATA[-->
+<!--        select *-->
+<!--        from lm_community-->
+<!--        order by com_post_number desc-->
+<!--        ]]>-->
+<!--    </select>-->
+
+</mapper>

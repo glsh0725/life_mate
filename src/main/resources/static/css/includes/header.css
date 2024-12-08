@@ -38,12 +38,13 @@ header {
     flex: 1;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 80px;
     margin: 0;
     padding-right: 20%;
     font-size: 24px;
@@ -62,7 +63,7 @@ header {
 
 .navbar a.active {
     border-bottom: 3px solid #8A4924;
-    color: #8A4924; /* 선택사항: 활성화된 링크의 색상 변경 */
+    color: #8A4924;
 }
 
 .auth-check {

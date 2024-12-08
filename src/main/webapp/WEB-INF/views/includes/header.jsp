@@ -29,7 +29,7 @@
     <div class="header-container">
         <a href="${contextPath}/main" class="logo">
             <img width="100" height="90" src="${contextPath}/images/logo.png">
-            <h2>반려해로</h2>
+            <img width="250" height="90" src="${contextPath}/images/name.png">
         </a>
         <nav class="navbar">
             <ul>

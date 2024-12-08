@@ -12,9 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class FestivalServiceImpl implements FestivalService {
@@ -30,6 +28,8 @@ public class FestivalServiceImpl implements FestivalService {
         ObjectMapper objectMapper = new ObjectMapper();
         int pageNo = 1;
 
+        Set<String> uniqueFestivalNames = new HashSet<>();
+
         try {
             while (true) {
                 String response = getApiResponse(BASE_API_URL + "&pageNo=" + pageNo);
@@ -43,6 +43,11 @@ public class FestivalServiceImpl implements FestivalService {
                 if (itemsNode.isArray() && itemsNode.size() > 0) {
                     for (JsonNode item : itemsNode) {
                         FestivalVO festival = objectMapper.treeToValue(item, FestivalVO.class);
+
+                        if (uniqueFestivalNames.contains(festival.getFstvlNm())) {
+                            continue;
+                        }
+                        uniqueFestivalNames.add(festival.getFstvlNm());
 
                         String address = item.path("rdnmadr").asText();
                         if (address.isEmpty()) {

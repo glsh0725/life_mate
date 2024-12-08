@@ -156,6 +156,25 @@ document.addEventListener("DOMContentLoaded", function () {
     populateYearAndMonth(today);
     generateCalendar(today.getFullYear(), today.getMonth(), selectedDateInput.value);
 
+    document.querySelectorAll(".festival-item").forEach(item => {
+        const festivalTitle = item.querySelector(".festival-title").textContent.trim();
+        const imageName = `${festivalTitle}.jpg`;
+        const imageUrl = `/images/festival/${imageName}`;
+
+        const imgElement = document.createElement("img");
+        imgElement.src = imageUrl;
+        imgElement.alt = festivalTitle;
+
+        imgElement.onerror = function () {
+            imgElement.src = "/images/festival/default.jpg";
+        };
+
+        const imageContainer = document.createElement("div");
+        imageContainer.className = "festival-image";
+        imageContainer.appendChild(imgElement);
+        item.prepend(imageContainer);
+    });
+
     document.querySelectorAll(".festival-item").forEach((item, index) => {
         item.addEventListener("click", function () {
             const festival = window.festivalData[index];

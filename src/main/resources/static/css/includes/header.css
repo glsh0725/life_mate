@@ -60,6 +60,11 @@ header {
     color: #8A4924;
 }
 
+.navbar a.active {
+    border-bottom: 3px solid #8A4924;
+    color: #8A4924; /* 선택사항: 활성화된 링크의 색상 변경 */
+}
+
 .auth-check {
     position: fixed;
     top: 0;

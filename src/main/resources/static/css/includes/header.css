@@ -1,9 +1,20 @@
+header {
+    margin-bottom: 120px;
+}
+
 .header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: black;
-    width: 100%;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -46,18 +57,25 @@
 }
 
 .navbar a:hover {
-    color: #685858;
+    color: #8A4924;
 }
 
 .auth-check {
-    display : flex;
-    margin : 0;
-    padding-right: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    margin: 0;
     gap: 15px;
     justify-content: flex-end;
+    color: black;
+    z-index: 10000;
 }
 
 .auth-check a {
+    padding-right: 20px;
     text-decoration: none;
     color: black;
     font-weight: bold;
@@ -65,5 +83,5 @@
 }
 
 .auth-check a:hover {
-    color: #685858;
+    color: #8A4924;
 }

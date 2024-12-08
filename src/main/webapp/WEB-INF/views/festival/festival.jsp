@@ -27,7 +27,7 @@
         </section>
         <form class="festival-search-form" method="get" action="${contextPath}/festival">
             <input type="hidden" id="selected-date" name="date" value="${selectedDate}" />
-            <input type="text" name="address" placeholder="주소로 검색" value="${selectedAddress}" />
+            <input type="text" name="address" placeholder="지역 검색" value="${selectedAddress}" />
             <button type="submit">검색</button>
         </form>
         <h1>축제 리스트</h1>

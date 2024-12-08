@@ -42,9 +42,11 @@ header {
 }
 
 .navbar ul {
+    width: 100%;
     list-style: none;
+    justify-content: space-evenly;
     display: flex;
-    gap: 80px;
+    gap: 40px;
     margin: 0;
     padding-right: 20%;
     font-size: 24px;

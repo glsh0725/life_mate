@@ -17,4 +17,7 @@ public interface CommonController {
                               RedirectAttributes redirectAttributes,
                               HttpServletRequest request,
                               HttpServletResponse response) throws Exception;
+
+    public ModelAndView logout(HttpServletRequest request,
+                               HttpServletResponse response) throws Exception;
 }

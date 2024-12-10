@@ -1,46 +1,49 @@
 .write-form-main {
-    width: 90%;
-    display: justify;
+    width: 100%;
+    display: flex;
     justify-content: center;
-    align-content: center;
-    padding: 10px 50px 0px 50px;
+    padding: 20px 0; /* 위아래 여백을 늘림 */
 }
 
 .write-form-container {
-    background-color: #fff;
+    background-color: #c5e2b6;
     border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px; /* 내부 여백을 넉넉하게 설정 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* 최대 너비를 800px로 설정 */
 }
 
 h1 {
     text-align: center;
     color: #333;
+    font-size: 28px; /* 제목 크기를 조금 키움 */
 }
 
 .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 20px; /* 각 입력 그룹 간 간격을 넓힘 */
 }
 
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #555;
+    font-size: 16px; /* 라벨 폰트 크기 확대 */
 }
 
-input, textarea {
-    width: 70%;
-    padding: 10px;
+input, textarea, select {
+    width: 100%; /* 입력 필드 너비를 100%로 설정 */
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 14px;
-    color: #333;
+    font-size: 16px; /* 입력 필드 텍스트 크기 확대 */
     box-sizing: border-box;
 }
 
 textarea {
-    resize: none;
+    resize: vertical;
+    height: 150px; /* 텍스트 영역 높이를 늘림 */
 }
 
 input:focus, select:focus, textarea:focus {
@@ -50,12 +53,13 @@ input:focus, select:focus, textarea:focus {
 
 .form-buttons {
     display: flex;
-    justify-content: between;
+    justify-content: flex-end;
+    gap: 15px; /* 버튼 사이 간격을 늘림 */
 }
 
 button {
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 12px 20px;
+    font-size: 16px; /* 버튼 텍스트 크기 확대 */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -67,7 +71,6 @@ button[type="submit"] {
 }
 
 button[type="button"] {
-    justify-content: center;
     background-color: #ddd;
     color: black;
 }
@@ -77,11 +80,6 @@ button:hover {
 }
 
 select {
-    width: 100px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
+    width: 150px; /* 셀렉트 박스 너비 확대 */
+    padding: 12px;
 }

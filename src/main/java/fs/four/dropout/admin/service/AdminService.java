@@ -5,4 +5,6 @@ import java.util.List;
 public interface AdminService {
 
     public List listUsers() throws Exception;
+
+    public List listCommunity() throws Exception;
 }

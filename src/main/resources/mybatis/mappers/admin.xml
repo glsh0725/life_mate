@@ -11,4 +11,12 @@
         ]]>
     </select>
 
+    <select id="selectAllCommunityList" resultType="CommunityVO">
+        <![CDATA[
+        select *
+        from lm_community
+        order by com_post_number desc
+        ]]>
+    </select>
+
 </mapper>

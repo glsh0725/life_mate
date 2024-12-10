@@ -8,4 +8,5 @@ public interface AdminController {
 
     public ModelAndView listUsers(HttpServletRequest request,
                                   HttpServletResponse response) throws Exception;
+
 }

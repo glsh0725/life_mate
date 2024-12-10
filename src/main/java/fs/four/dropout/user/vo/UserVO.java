@@ -21,6 +21,8 @@ public class UserVO {
     private String usr_image_name;
     private String usr_image_path;
 
+    private String role;
+
     public UserVO() {
 
     }
@@ -119,5 +121,13 @@ public class UserVO {
 
     public void setUsr_image_path(String usr_image_path) {
         this.usr_image_path = usr_image_path;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

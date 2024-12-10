@@ -26,4 +26,11 @@ public class AdminServiceImpl implements AdminService {
         usersList = adminDAO.selectAllUserList();
         return usersList;
     }
+
+    @Override
+    public List listCommunity() throws Exception{
+        List communityList = null;
+        communityList = adminDAO.selectAllCommunityList();
+        return communityList;
+    }
 }

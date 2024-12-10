@@ -23,13 +23,13 @@
             <h1>로그인</h1>
             <form action="${pageContext.request.contextPath}/login" method="post" id="loginForm">
                 <div class="form-group-id">
-                    <label for="userId">아이디</label>
-                    <input type="text" id="userId" name="userId" required placeholder="아이디를 입력하세요">
+                    <label for="usr_id">아이디</label>
+                    <input type="text" id="usr_id" name="usr_id" required placeholder="아이디를 입력하세요">
                 </div>
 
                 <div class="form-group-password">
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+                    <label for="usr_password">비밀번호</label>
+                    <input type="password" id="usr_password" name="usr_password" required placeholder="비밀번호를 입력하세요">
                 </div>
 
                 <div class="form-group-memory">

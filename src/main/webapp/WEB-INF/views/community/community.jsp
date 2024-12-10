@@ -40,6 +40,14 @@
         </form>
     </div>
 
+    <%-- 페이지네이션 값 계산 --%>
+        <c:set var="postsPerPage" value="8" />
+        <c:set var="totalPosts" value="${totalPosts}" />
+        <c:set var="currentPage" value="${param.page != null ? param.page : 1}" />
+        <c:set var="totalPages" value="${(totalPosts + postsPerPage - 1) / postsPerPage}" />
+        <c:set var="prevPage" value="${currentPage > 1 ? currentPage - 1 : 1}" />
+        <c:set var="nextPage" value="${currentPage < totalPages ? currentPage + 1 : totalPages}" />
+
     <%-- 페이지네이션 --%>
     <div class="pagination">
         <button onclick="location.href='boardList.jsp?page=${prevPage}'">이전</button>

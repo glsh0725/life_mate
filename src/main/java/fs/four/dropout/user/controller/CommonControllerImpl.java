@@ -66,11 +66,15 @@ public class CommonControllerImpl implements CommonController {
                               RedirectAttributes rAttr,
                               HttpServletRequest request,
                               HttpServletResponse response) throws Exception {
+
         ModelAndView mav = new ModelAndView();
         userVO = loginService.login(user);
-        if (userVO == null) {
+        if (userVO != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", userVO);
+
+            session.setAttribute("admin", userVO);
+
             session.setAttribute("isLogOn", true);
 
             String action = (String) session.getAttribute("action");
@@ -84,6 +88,20 @@ public class CommonControllerImpl implements CommonController {
             rAttr.addAttribute("result", "loginFailed");
             mav.setViewName("redirect:/login");
         }
+        return mav;
+    }
+
+    @Override
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request,
+                               HttpServletResponse response) throws Exception{
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        session.setAttribute("isLogOn", false);
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("redirect:/main");
         return mav;
     }
 }

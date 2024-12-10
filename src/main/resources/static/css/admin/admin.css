@@ -1,0 +1,21 @@
+.tabcontent {
+    display: none;
+}
+
+.tablink {
+    background-color: #f2f2f2;
+    border: none;
+    color: #121212;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tablink:hover {
+    background-color: #ddd;
+}
+
+.tabs {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}

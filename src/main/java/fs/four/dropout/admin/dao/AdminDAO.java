@@ -9,4 +9,6 @@ import java.util.List;
 public interface AdminDAO {
 
     public List selectAllUserList() throws DataAccessException;
+
+    public List selectAllCommunityList() throws DataAccessException;
 }

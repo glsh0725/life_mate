@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -31,10 +30,13 @@ public class AdminControllerImpl implements AdminController {
                                   HttpServletResponse response) throws Exception {
 
         List usersList = adminService.listUsers();
+        List communityList = adminService.listCommunity();
 
         ModelAndView mav = new ModelAndView("/admin/admin");
 
         mav.addObject("usersList", usersList);
+        mav.addObject("communityList", communityList);
         return mav;
     }
+
 }

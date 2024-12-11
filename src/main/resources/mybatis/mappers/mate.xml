@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fs.four.dropout.mate.dao.MateDAO">
+
+    <select id="existsByFacilityName" resultType="boolean" parameterType="string">
+        SELECT CASE WHEN COUNT(1) > 0 THEN 1 ELSE 0 END
+        FROM LM_mate
+        WHERE mate_facility_name = #{facilityName}
+    </select>
+
+    <insert id="insertCombinedData" parameterType="fs.four.dropout.mate.vo.MateVO">
+        INSERT INTO LM_mate (
+        mate_facility_name, mate_contact, mate_old_address, mate_new_address,
+        mate_url, mate_business_hours, mate_holiday, mate_last_updated,
+        mate_city, mate_city_district, mate_blog_url, mate_facebook_url,
+        mate_instagram_url, mate_entry_fee, mate_free_parking, mate_paid_parking,
+        mate_entry_age, mate_family_toilet, mate_stroller_rental, mate_nursing_room,
+        mate_kid_zone, mate_pet_companion_fee, mate_pet_restrictions, mate_parking,
+        mate_indoor, mate_outdoor, mate_pet_size, mate_pet_friendly
+        )
+        VALUES (
+        #{facilityName}, #{contact}, #{oldAddress}, #{newAddress},
+        #{url}, #{businessHours},
+        #{holiday}, #{lastUpdated},
+        #{city}, #{cityDistrict},
+        #{blogUrl}, #{facebookUrl},
+        #{instargramUrl}, #{entryFee},
+        #{freeParking}, #{paidParking},
+        #{entryAge}, #{familyToilet},
+        #{strollerRental}, #{nursingRoom},
+        #{kidZone}, #{petCompanionFee},
+        #{petRestrictions}, #{parking},
+        #{indoor}, #{outdoor},
+        #{petSize}, #{petFriendly}
+        )
+    </insert>
+
+</mapper>

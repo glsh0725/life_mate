@@ -20,23 +20,23 @@ public class MateVO {
     private String blogUrl; // 블로그 주소
     private String facebookUrl; // 페이스북 주소
     private String instargramUrl; // 인스타 주소
-    private char entryFee; // 입장료 유무 여부
-    private char freeParking; // 무료주차 가능여부
-    private char paidParking; // 유료주차 가능여부
+    private String entryFee; // 입장료 유무 여부
+    private String freeParking; // 무료주차 가능여부
+    private String paidParking; // 유료주차 가능여부
     private String entryAge; // 입장 가능 나이
-    private char familyToilet; // 가족 화장실 보유 여부
-    private char strollerRental; // 유모차 대여 여부
-    private char nursingRoom; // 수유실 보유 여부
-    private char kidZone; // 키즈존 여부
+    private String familyToilet; // 가족 화장실 보유 여부
+    private String strollerRental; // 유모차 대여 여부
+    private String nursingRoom; // 수유실 보유 여부
+    private String kidZone; // 키즈존 여부
 
     // 반려동물 동반 관련 필드
     private String petCompanionFee; // 애견 동반 추가 요금
     private String petRestrictions; // 반려동물 제한사항
-    private char parking; // 주차 가능여부
-    private char indoor; // 장소(실내) 여부
-    private char outdoor; // 장소(실외) 여부
+    private String parking; // 주차 가능여부
+    private String indoor; // 장소(실내) 여부
+    private String outdoor; // 장소(실외) 여부
     private String petSize; // 입장 가능 동물 크기
-    private char petFriendly; // 반려동물 동반 가능정보
+    private String petFriendly; // 반려동물 동반 가능정보
 
     public MateVO() {
     }
@@ -145,27 +145,27 @@ public class MateVO {
         this.instargramUrl = instargramUrl;
     }
 
-    public char getEntryFee() {
+    public String getEntryFee() {
         return entryFee;
     }
 
-    public void setEntryFee(char entryFee) {
+    public void setEntryFee(String entryFee) {
         this.entryFee = entryFee;
     }
 
-    public char getFreeParking() {
+    public String getFreeParking() {
         return freeParking;
     }
 
-    public void setFreeParking(char freeParking) {
+    public void setFreeParking(String freeParking) {
         this.freeParking = freeParking;
     }
 
-    public char getPaidParking() {
+    public String getPaidParking() {
         return paidParking;
     }
 
-    public void setPaidParking(char paidParking) {
+    public void setPaidParking(String paidParking) {
         this.paidParking = paidParking;
     }
 
@@ -177,35 +177,35 @@ public class MateVO {
         this.entryAge = entryAge;
     }
 
-    public char getFamilyToilet() {
+    public String getFamilyToilet() {
         return familyToilet;
     }
 
-    public void setFamilyToilet(char familyToilet) {
+    public void setFamilyToilet(String familyToilet) {
         this.familyToilet = familyToilet;
     }
 
-    public char getStrollerRental() {
+    public String getStrollerRental() {
         return strollerRental;
     }
 
-    public void setStrollerRental(char strollerRental) {
+    public void setStrollerRental(String strollerRental) {
         this.strollerRental = strollerRental;
     }
 
-    public char getNursingRoom() {
+    public String getNursingRoom() {
         return nursingRoom;
     }
 
-    public void setNursingRoom(char nursingRoom) {
+    public void setNursingRoom(String nursingRoom) {
         this.nursingRoom = nursingRoom;
     }
 
-    public char getKidZone() {
+    public String getKidZone() {
         return kidZone;
     }
 
-    public void setKidZone(char kidZone) {
+    public void setKidZone(String kidZone) {
         this.kidZone = kidZone;
     }
 
@@ -225,27 +225,27 @@ public class MateVO {
         this.petRestrictions = petRestrictions;
     }
 
-    public char getParking() {
+    public String getParking() {
         return parking;
     }
 
-    public void setParking(char parking) {
+    public void setParking(String parking) {
         this.parking = parking;
     }
 
-    public char getIndoor() {
+    public String getIndoor() {
         return indoor;
     }
 
-    public void setIndoor(char indoor) {
+    public void setIndoor(String indoor) {
         this.indoor = indoor;
     }
 
-    public char getOutdoor() {
+    public String getOutdoor() {
         return outdoor;
     }
 
-    public void setOutdoor(char outdoor) {
+    public void setOutdoor(String outdoor) {
         this.outdoor = outdoor;
     }
 
@@ -257,11 +257,11 @@ public class MateVO {
         this.petSize = petSize;
     }
 
-    public char getPetFriendly() {
+    public String getPetFriendly() {
         return petFriendly;
     }
 
-    public void setPetFriendly(char petFriendly) {
+    public void setPetFriendly(String petFriendly) {
         this.petFriendly = petFriendly;
     }
 }

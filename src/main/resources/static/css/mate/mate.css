@@ -1,0 +1,22 @@
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+th {
+    background-color: #e6c8a9;
+    color: black;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+}

@@ -11,4 +11,6 @@ public interface MateDAO {
     boolean existsByFacilityName(@Param("facilityName") String facilityName);
 
     void insertCombinedData(MateVO mateVO);
+
+    List<MateVO> selectAll();
 }

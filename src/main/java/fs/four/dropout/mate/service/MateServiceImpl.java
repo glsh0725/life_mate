@@ -22,6 +22,12 @@ public class MateServiceImpl implements MateService {
     @Autowired
     private MateDAO mateDAO;
 
+    @Override
+    @Cacheable(value = "mateData", key = "'allMates'")
+    public List<MateVO> getAllMates() {
+        return mateDAO.selectAll();
+    }
+
     // 유아 동반 API URL
     private static final String INFANT_API_URL = "https://api.odcloud.kr/api/15111391/v1/uddi:19c0c9ab-ac89-486b-b4b8-b026506dc3fa";
     // 반려동물 API URL

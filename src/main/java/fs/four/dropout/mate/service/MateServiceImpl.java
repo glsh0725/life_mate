@@ -12,54 +12,110 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MateServiceImpl implements MateService {
 
     // 유아 동반 API URL
     private static final String INFANT_API_URL = "https://api.odcloud.kr/api/15111391/v1/uddi:19c0c9ab-ac89-486b-b4b8-b026506dc3fa";
-    // 반려동물 API URL (반려동물 API 주소가 나중에 제공되면 여기에 적용)
-    private static final String PET_API_URL = "https://example.com/pet-api"; // 예시로 제공된 URL, 실제 반려동물 API URL로 변경 필요
+    // 반려동물 API URL
+    private static final String PET_API_URL = "https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc";
+    // 서비스키
     private static final String SERVICE_KEY = "9E5LkDla3NtpffFe9%2BgzMow%2FMoH2X%2B5xQNVxuvQwz5uvf3KsPlXqUX40L%2FK9wbDbDKJVGQLIJZkhKKGHC%2Fzrgg%3D%3D";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
+    @Cacheable(value = "mateData", key = "'infantData'")
     public List<MateVO> getInfantData() {
-        return fetchPagedData(INFANT_API_URL); // 유아 동반 API 데이터
+        return fetchPagedData(INFANT_API_URL, true);
     }
 
     @Override
+    @Cacheable(value = "mateData", key = "'petData'")
     public List<MateVO> getPetData() {
-        return fetchPagedData(PET_API_URL); // 반려동물 동반 API 데이터
+        return fetchPagedData(PET_API_URL, false);
     }
 
     @Override
+    @Cacheable(value = "mateData", key = "'combinedData'")
     public List<MateVO> getCombinedData() {
+        List<MateVO> infantData = getInfantData();
+        List<MateVO> petData = getPetData();
         List<MateVO> combinedData = new ArrayList<>();
-        combinedData.addAll(getInfantData());
-        combinedData.addAll(getPetData());
+
+        Map<String, MateVO> petDataMap = new HashMap<>();
+        for (MateVO pet : petData) {
+            petDataMap.put(pet.getFacilityName(), pet);
+        }
+
+        for (MateVO infant : infantData) {
+            MateVO matchingPet = petDataMap.get(infant.getFacilityName());
+            if (matchingPet != null) {
+                MateVO combinedMate = mergeMateData(infant, matchingPet);
+                combinedData.add(combinedMate);
+            }
+        }
+
         return combinedData;
     }
 
-    @Cacheable(value = "mateData", key = "'pagedData'")
-    private List<MateVO> fetchPagedData(String apiUrl) {
+    private MateVO mergeMateData(MateVO infant, MateVO pet) {
+        MateVO combined = new MateVO();
+
+        combined.setFacilityName(infant.getFacilityName());
+        combined.setContact(infant.getContact());
+        combined.setOldAddress(infant.getOldAddress());
+        combined.setNewAddress(infant.getNewAddress());
+        combined.setUrl(infant.getUrl());
+        combined.setBusinessHours(infant.getBusinessHours());
+        combined.setHoliday(infant.getHoliday());
+        combined.setLastUpdated(infant.getLastUpdated());
+        combined.setCity(infant.getCity());
+        combined.setCityDistrict(infant.getCityDistrict());
+
+        combined.setBlogUrl(infant.getBlogUrl());
+        combined.setFacebookUrl(infant.getFacebookUrl());
+        combined.setInstargramUrl(infant.getInstargramUrl());
+        combined.setEntryFee(infant.getEntryFee());
+        combined.setFreeParking(infant.getFreeParking());
+        combined.setPaidParking(infant.getPaidParking());
+        combined.setEntryAge(infant.getEntryAge());
+        combined.setFamilyToilet(infant.getFamilyToilet());
+        combined.setStrollerRental(infant.getStrollerRental());
+        combined.setNursingRoom(infant.getNursingRoom());
+        combined.setKidZone(infant.getKidZone());
+
+        combined.setPetCompanionFee(pet.getPetCompanionFee());
+        combined.setPetRestrictions(pet.getPetRestrictions());
+        combined.setParking(pet.getParking());
+        combined.setIndoor(pet.getIndoor());
+        combined.setOutdoor(pet.getOutdoor());
+        combined.setPetSize(pet.getPetSize());
+        combined.setPetFriendly(pet.getPetFriendly());
+
+        return combined;
+    }
+
+    @Cacheable(value = "mateData", key = "#apiUrl")
+    private List<MateVO> fetchPagedData(String apiUrl, boolean isInfantData) {
         List<MateVO> mateList = new ArrayList<>();
         int page = 1;
 
-        while (page == 1) {
+        while (true) {
             try {
-                String fullUrl = String.format("%s?page=%d&perPage=10&returnType=json&serviceKey=%s", apiUrl, page, SERVICE_KEY);
+                String fullUrl = String.format("%s?page=%d&perPage=500&returnType=json&serviceKey=%s", apiUrl, page, SERVICE_KEY);
                 String response = getApiResponse(fullUrl);
                 if (response == null) break;
 
                 JsonNode dataNode = objectMapper.readTree(response).path("data");
                 if (dataNode.isArray() && dataNode.size() > 0) {
                     for (JsonNode node : dataNode) {
-                        MateVO mate = mapJsonToMateVO(node);
-                        mateList.add(mate);
+                        MateVO mate = mapJsonToMateVO(node, isInfantData);
+                        if (isInfantData || mate.getPetFriendly() == 'Y') {
+                            mateList.add(mate);
+                        }
                     }
                     page++;
                 } else {
@@ -74,10 +130,9 @@ public class MateServiceImpl implements MateService {
         return mateList;
     }
 
-    private MateVO mapJsonToMateVO(JsonNode node) {
+    private MateVO mapJsonToMateVO(JsonNode node, boolean isInfantData) {
         MateVO mate = new MateVO();
 
-        // 공통 필드
         mate.setFacilityName(node.path("시설명").asText(""));
         mate.setContact(node.path("전화번호").asText(""));
         mate.setOldAddress(node.path("지번주소").asText(""));
@@ -101,33 +156,27 @@ public class MateServiceImpl implements MateService {
         mate.setCity(node.path("시도 명칭").asText(""));
         mate.setCityDistrict(node.path("시군구 명칭").asText(""));
 
-        // 유아 동반 관련 필드
-        mate.setBlogUrl(node.path("블로그 주소").asText(""));
-        mate.setFacebookUrl(node.path("페이스북 주소").asText(""));
-        mate.setInstargramUrl(node.path("인스타 주소").asText(""));
-
-        String entryFee = node.path("입장료 유무 여부").asText("");
-        mate.setEntryFee(entryFee.isEmpty() ? 'N' : entryFee.charAt(0));
-
-        String freeParking = node.path("무료주차 가능여부").asText("");
-        mate.setFreeParking(freeParking.isEmpty() ? 'N' : freeParking.charAt(0));
-
-        String paidParking = node.path("유료주차 가능여부").asText("");
-        mate.setPaidParking(paidParking.isEmpty() ? 'N' : paidParking.charAt(0));
-
-        mate.setEntryAge(node.path("입장 가능 나이").asText(""));
-
-        String familyToilet = node.path("가족 화장실 보유 여부").asText("");
-        mate.setFamilyToilet(familyToilet.isEmpty() ? 'N' : familyToilet.charAt(0));
-
-        String strollerRental = node.path("유모차 대여 여부").asText("");
-        mate.setStrollerRental(strollerRental.isEmpty() ? 'N' : strollerRental.charAt(0));
-
-        String nursingRoom = node.path("수유실 보유 여부").asText("");
-        mate.setNursingRoom(nursingRoom.isEmpty() ? 'N' : nursingRoom.charAt(0));
-
-        String kidZone = node.path("키즈존 여부").asText("");
-        mate.setKidZone(kidZone.isEmpty() ? 'N' : kidZone.charAt(0));
+        if (isInfantData) {
+            mate.setBlogUrl(node.path("블로그 주소").asText(""));
+            mate.setFacebookUrl(node.path("페이스북 주소").asText(""));
+            mate.setInstargramUrl(node.path("인스타 주소").asText(""));
+            mate.setEntryFee(node.path("입장료 유무 여부").asText("").isEmpty() ? 'N' : node.path("입장료 유무 여부").asText().charAt(0));
+            mate.setFreeParking(node.path("무료주차 가능여부").asText("").isEmpty() ? 'N' : node.path("무료주차 가능여부").asText().charAt(0));
+            mate.setPaidParking(node.path("유료주차 가능여부").asText("").isEmpty() ? 'N' : node.path("유료주차 가능여부").asText().charAt(0));
+            mate.setEntryAge(node.path("입장 가능 나이").asText(""));
+            mate.setFamilyToilet(node.path("가족 화장실 보유 여부").asText("").isEmpty() ? 'N' : node.path("가족 화장실 보유 여부").asText().charAt(0));
+            mate.setStrollerRental(node.path("유모차 대여 여부").asText("").isEmpty() ? 'N' : node.path("유모차 대여 여부").asText().charAt(0));
+            mate.setNursingRoom(node.path("수유실 보유 여부").asText("").isEmpty() ? 'N' : node.path("수유실 보유 여부").asText().charAt(0));
+            mate.setKidZone(node.path("키즈존 여부").asText("").isEmpty() ? 'N' : node.path("키즈존 여부").asText().charAt(0));
+        } else {
+            mate.setPetCompanionFee(node.path("애견 동반 추가 요금").asText(""));
+            mate.setPetRestrictions(node.path("반려동물 제한사항").asText(""));
+            mate.setParking(node.path("주차 가능여부").asText("").isEmpty() ? 'N' : node.path("주차 가능여부").asText().charAt(0));
+            mate.setIndoor(node.path("장소(실내) 여부").asText("").isEmpty() ? 'N' : node.path("장소(실내) 여부").asText().charAt(0));
+            mate.setOutdoor(node.path("장소(실외)여부").asText("").isEmpty() ? 'N' : node.path("장소(실외)여부").asText().charAt(0));
+            mate.setPetSize(node.path("입장 가능 동물 크기").asText(""));
+            mate.setPetFriendly(node.path("반려동물 동반 가능정보").asText("").isEmpty() ? 'N' : node.path("반려동물 동반 가능정보").asText().charAt(0));
+        }
 
         return mate;
     }

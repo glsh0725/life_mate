@@ -43,22 +43,25 @@ public class MateServiceImpl implements MateService {
     public List<MateVO> getCombinedData() {
         List<MateVO> infantData = getInfantData();
         List<MateVO> petData = getPetData();
-        List<MateVO> combinedData = new ArrayList<>();
 
-        Map<String, MateVO> petDataMap = new HashMap<>();
-        for (MateVO pet : petData) {
-            petDataMap.put(pet.getFacilityName(), pet);
-        }
+        Map<String, MateVO> combinedMap = new HashMap<>();
 
         for (MateVO infant : infantData) {
-            MateVO matchingPet = petDataMap.get(infant.getFacilityName());
-            if (matchingPet != null) {
-                MateVO combinedMate = mergeMateData(infant, matchingPet);
-                combinedData.add(combinedMate);
+            combinedMap.put(infant.getFacilityName(), infant);
+        }
+
+        for (MateVO pet : petData) {
+            String facilityName = pet.getFacilityName();
+            if (combinedMap.containsKey(facilityName)) {
+                MateVO existing = combinedMap.get(facilityName);
+                MateVO merged = mergeMateData(existing, pet);
+                combinedMap.put(facilityName, merged);
+            } else {
+                combinedMap.put(facilityName, pet);
             }
         }
 
-        return combinedData;
+        return new ArrayList<>(combinedMap.values());
     }
 
     private MateVO mergeMateData(MateVO infant, MateVO pet) {
@@ -105,7 +108,7 @@ public class MateServiceImpl implements MateService {
 
         while (true) {
             try {
-                String fullUrl = String.format("%s?page=%d&perPage=500&returnType=json&serviceKey=%s", apiUrl, page, SERVICE_KEY);
+                String fullUrl = String.format("%s?page=%d&perPage=1000&returnType=json&serviceKey=%s", apiUrl, page, SERVICE_KEY);
                 String response = getApiResponse(fullUrl);
                 if (response == null) break;
 
@@ -113,9 +116,7 @@ public class MateServiceImpl implements MateService {
                 if (dataNode.isArray() && dataNode.size() > 0) {
                     for (JsonNode node : dataNode) {
                         MateVO mate = mapJsonToMateVO(node, isInfantData);
-                        if (isInfantData || mate.getPetFriendly() == 'Y') {
-                            mateList.add(mate);
-                        }
+                        mateList.add(mate);
                     }
                     page++;
                 } else {
@@ -173,7 +174,7 @@ public class MateServiceImpl implements MateService {
             mate.setPetRestrictions(node.path("반려동물 제한사항").asText(""));
             mate.setParking(node.path("주차 가능여부").asText("").isEmpty() ? 'N' : node.path("주차 가능여부").asText().charAt(0));
             mate.setIndoor(node.path("장소(실내) 여부").asText("").isEmpty() ? 'N' : node.path("장소(실내) 여부").asText().charAt(0));
-            mate.setOutdoor(node.path("장소(실외)여부").asText("").isEmpty() ? 'N' : node.path("장소(실외)여부").asText().charAt(0));
+            mate.setOutdoor(node.path("장소(실외) 여부").asText("").isEmpty() ? 'N' : node.path("장소(실외) 여부").asText().charAt(0));
             mate.setPetSize(node.path("입장 가능 동물 크기").asText(""));
             mate.setPetFriendly(node.path("반려동물 동반 가능정보").asText("").isEmpty() ? 'N' : node.path("반려동물 동반 가능정보").asText().charAt(0));
         }
@@ -181,26 +182,28 @@ public class MateServiceImpl implements MateService {
         return mate;
     }
 
-    private String getApiResponse(String apiUrl) {
-        StringBuilder response = new StringBuilder();
+    private String getApiResponse(String urlStr) {
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
+            URL url = new URL(urlStr);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
 
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line);
-                    }
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
                 }
+
+                reader.close();
+                return response.toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
-        return response.toString();
+        return null;
     }
 }

@@ -16,6 +16,13 @@
     <title>로그인</title>
     <link rel="stylesheet" href="${contextPath}/static/css/user/login.css">
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
+    <script>
+        var message = "${message}";
+
+        if (message) {
+            alert(message);
+        }
+    </script>
 </head>
 <body>
     <main>
@@ -52,5 +59,6 @@
         </div>
         <script src="${pageContext.request.contextPath}/static/js/user/login.js"></script>
     </main>
+    <script src="${contextPath}/js/user/login.js"></script>
 </body>
 </html>

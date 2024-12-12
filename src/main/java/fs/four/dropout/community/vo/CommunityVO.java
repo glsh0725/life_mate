@@ -1,6 +1,7 @@
 package fs.four.dropout.community.vo;
 
 
+import fs.four.dropout.admin.vo.AdminVO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +9,9 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Component("communityVO")
-public class CommunityVO {
+public class CommunityVO extends AdminVO {
 
-    private Number com_post_number;
+    private int com_post_number;
     private String usr_id;
     private String com_title;
     private String com_thumbnail_name;
@@ -31,17 +32,17 @@ public class CommunityVO {
     private String com_updated_id;
     private Timestamp com_updated_date;
     @DateTimeFormat(pattern = "YYYY-MM-DD")
-    private Date com_post_date;
+    private String com_post_date;
 
     public CommunityVO() {
 
     }
 
-    public Number getCom_post_number() {
+    public int getCom_post_number() {
         return com_post_number;
     }
 
-    public void setCom_post_number(Number com_post_number) {
+    public void setCom_post_number(int com_post_number) {
         this.com_post_number = com_post_number;
     }
 
@@ -197,11 +198,20 @@ public class CommunityVO {
         this.com_updated_date = com_updated_date;
     }
 
-    public Date getCom_post_date() {
+//    public Date getCom_post_date() {
+//        return com_post_date;
+//    }
+//
+//    public void setCom_post_date(Date com_post_date) {
+//        this.com_post_date = com_post_date;
+//    }
+
+
+    public String getCom_post_date() {
         return com_post_date;
     }
 
-    public void setCom_post_date(Date com_post_date) {
+    public void setCom_post_date(String com_post_date) {
         this.com_post_date = com_post_date;
     }
 }

@@ -6,37 +6,43 @@ body {
     background-color: #f8f9fa;
 }
 
-/* 메인 컨테이너 스타일 */
-main {
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-}
-
-/* 게시물 컨테이너: 4열 설정 */
+/* 게시물 컨테이너 스타일 */
 .board-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4열 */
-    gap: 20px; /* 게시물 사이 간격 */
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈을 허용 */
+    gap: 10px; /* 간격 */
+    padding-left: 40px;
+    padding-right: 40px;
     margin: 20px auto;
-    max-width: 1200px; /* 최대 너비 */
+    justify-content: left;
 }
 
 /* 게시물 카드 스타일 */
 .board-card {
+    width: 250px;
+    height: 280px; /* 카드 높이 설정 */
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 280px; /* 카드 높이 설정 */
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .board-card:hover {
     transform: translateY(-5px); /* 호버 시 약간 상승 효과 */
+}
+
+/* 링크 기본 스타일 제거 */
+.post-link {
+    text-decoration: none;  /* 밑줄 제거 */
+    color: inherit;  /* 글자 색상 상속 */
+    display: block;  /* 링크가 div처럼 전체 영역을 차지하도록 */
 }
 
 /* 이미지 자리 표시자 */
@@ -57,7 +63,7 @@ main {
     padding: 4px 8px;
     font-size: 12px;
     font-weight: bold;
-    border-radius: 0 0 8px 0;
+    border-radius: 8px;
 }
 
 /* 게시물 내용 스타일 */

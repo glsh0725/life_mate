@@ -71,9 +71,12 @@ public class CommonControllerImpl implements CommonController {
         userVO = loginService.login(user);
         if (userVO != null) {
             HttpSession session = request.getSession();
+            session.setAttribute("usr_id", userVO.getUsr_id());
             session.setAttribute("user", userVO);
 
-            session.setAttribute("admin", userVO);
+            if("admin".equals(userVO.getRole())) {
+                session.setAttribute("admin", true);
+            }
 
             session.setAttribute("isLogOn", true);
 

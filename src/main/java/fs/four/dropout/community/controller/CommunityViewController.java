@@ -1,5 +1,4 @@
-package fs.four.dropout.admin.controller;
+package fs.four.dropout.community.controller;
 
 public interface CommunityViewController {
-
 }

@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 public class AdminVO {
 
     private Number adm_number;
-    private String usr_id;
+
+    //검색필터
+    private String type;
+    private String keyword;
 
     public AdminVO() {
 
@@ -20,11 +23,19 @@ public class AdminVO {
         this.adm_number = adm_number;
     }
 
-    public String getUsr_id() {
-        return usr_id;
+    public String getType() {
+        return type;
     }
 
-    public void setUsr_id(String usr_id) {
-        this.usr_id = usr_id;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

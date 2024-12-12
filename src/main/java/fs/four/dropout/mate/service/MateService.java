@@ -8,4 +8,5 @@ public interface MateService {
     List<MateVO> getInfantData();
     List<MateVO> getPetData();
     List<MateVO> getCombinedData();
+    List<MateVO> getAllMates();
 }

@@ -21,8 +21,8 @@
 
     <insert id="insertUser" parameterType="userVO">
         <![CDATA[
-        insert into lm_user(usr_id, usr_password, usr_nickname, usr_email)
-        values (#{usr_id}, #{usr_password}, #{usr_nickname}, #{usr_email})
+        insert into lm_user(usr_id, usr_password, usr_nickname, usr_email, usr_email_optout)
+        values (#{usr_id}, #{usr_password}, #{usr_nickname}, #{usr_email}, #{usr_email_optout})
         ]]>
     </insert>
 

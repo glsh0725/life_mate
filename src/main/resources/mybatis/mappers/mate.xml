@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fs.four.dropout.mate.dao.MateDAO">
+
+    <select id="existsByFacilityName" resultType="boolean" parameterType="string">
+        SELECT CASE WHEN COUNT(1) > 0 THEN 1 ELSE 0 END
+        FROM LM_mate
+        WHERE mate_facility_name = #{facilityName}
+    </select>
+
+    <insert id="insertCombinedData" parameterType="fs.four.dropout.mate.vo.MateVO">
+        INSERT INTO LM_mate (
+        mate_facility_name, mate_contact, mate_old_address, mate_new_address,
+        mate_url, mate_business_hours, mate_holiday, mate_last_updated,
+        mate_city, mate_city_district, mate_blog_url, mate_facebook_url,
+        mate_instagram_url, mate_entry_fee, mate_free_parking, mate_paid_parking,
+        mate_entry_age, mate_family_toilet, mate_stroller_rental, mate_nursing_room,
+        mate_kid_zone, mate_pet_companion_fee, mate_pet_restrictions, mate_parking,
+        mate_indoor, mate_outdoor, mate_pet_size, mate_pet_friendly
+        )
+        VALUES (
+        #{facilityName}, #{contact}, #{oldAddress}, #{newAddress},
+        #{url}, #{businessHours},
+        #{holiday}, #{lastUpdated},
+        #{city}, #{cityDistrict},
+        #{blogUrl}, #{facebookUrl},
+        #{instargramUrl}, #{entryFee},
+        #{freeParking}, #{paidParking},
+        #{entryAge}, #{familyToilet},
+        #{strollerRental}, #{nursingRoom},
+        #{kidZone}, #{petCompanionFee},
+        #{petRestrictions}, #{parking},
+        #{indoor}, #{outdoor},
+        #{petSize}, #{petFriendly}
+        )
+    </insert>
+
+    <select id="selectAll" resultType="fs.four.dropout.mate.vo.MateVO">
+        SELECT
+        mate_facility_name AS facilityName,
+        mate_contact AS contact,
+        mate_old_address AS oldAddress,
+        mate_new_address AS newAddress,
+        mate_url AS url,
+        mate_business_hours AS businessHours,
+        mate_holiday AS holiday,
+        mate_last_updated AS lastUpdated,
+        mate_city AS city,
+        mate_city_district AS cityDistrict,
+        mate_blog_url AS blogUrl,
+        mate_facebook_url AS facebookUrl,
+        mate_instagram_url AS instargramUrl,
+        mate_entry_fee AS entryFee,
+        mate_free_parking AS freeParking,
+        mate_paid_parking AS paidParking,
+        mate_entry_age AS entryAge,
+        mate_family_toilet AS familyToilet,
+        mate_stroller_rental AS strollerRental,
+        mate_nursing_room AS nursingRoom,
+        mate_kid_zone AS kidZone,
+        mate_pet_companion_fee AS petCompanionFee,
+        mate_pet_restrictions AS petRestrictions,
+        mate_parking AS parking,
+        mate_indoor AS indoor,
+        mate_outdoor AS outdoor,
+        mate_pet_size AS petSize,
+        mate_pet_friendly AS petFriendly
+        FROM LM_mate
+    </select>
+
+</mapper>

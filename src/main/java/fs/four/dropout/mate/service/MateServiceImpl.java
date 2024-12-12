@@ -2,7 +2,9 @@ package fs.four.dropout.mate.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fs.four.dropout.mate.dao.MateDAO;
 import fs.four.dropout.mate.vo.MateVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,15 @@ import java.util.*;
 
 @Service
 public class MateServiceImpl implements MateService {
+
+    @Autowired
+    private MateDAO mateDAO;
+
+    @Override
+    @Cacheable(value = "mateData", key = "'allMates'")
+    public List<MateVO> getAllMates() {
+        return mateDAO.selectAll();
+    }
 
     // 유아 동반 API URL
     private static final String INFANT_API_URL = "https://api.odcloud.kr/api/15111391/v1/uddi:19c0c9ab-ac89-486b-b4b8-b026506dc3fa";
@@ -61,7 +72,37 @@ public class MateServiceImpl implements MateService {
             }
         }
 
-        return new ArrayList<>(combinedMap.values());
+        List<MateVO> combinedList = new ArrayList<>(combinedMap.values());
+
+        for (MateVO mate : combinedList) {
+            sanitizeMateVO(mate);
+            if (!mateDAO.existsByFacilityName(mate.getFacilityName())) {
+                mateDAO.insertCombinedData(mate);
+            }
+        }
+
+        return combinedList;
+    }
+
+    private void sanitizeMateVO(MateVO mate) {
+        mate.setBlogUrl(mate.getBlogUrl() != null ? mate.getBlogUrl() : "");
+        mate.setFacebookUrl(mate.getFacebookUrl() != null ? mate.getFacebookUrl() : "");
+        mate.setInstargramUrl(mate.getInstargramUrl() != null ? mate.getInstargramUrl() : "");
+        mate.setEntryFee(mate.getEntryFee() != null ? mate.getEntryFee() : "N");
+        mate.setFreeParking(mate.getFreeParking() != null ? mate.getFreeParking() : "N");
+        mate.setPaidParking(mate.getPaidParking() != null ? mate.getPaidParking() : "N");
+        mate.setEntryAge(mate.getEntryAge() != null ? mate.getEntryAge() : "");
+        mate.setFamilyToilet(mate.getFamilyToilet() != null ? mate.getFamilyToilet() : "N");
+        mate.setStrollerRental(mate.getStrollerRental() != null ? mate.getStrollerRental() : "N");
+        mate.setNursingRoom(mate.getNursingRoom() != null ? mate.getNursingRoom() : "N");
+        mate.setKidZone(mate.getKidZone() != null ? mate.getKidZone() : "N");
+        mate.setPetCompanionFee(mate.getPetCompanionFee() != null ? mate.getPetCompanionFee() : "");
+        mate.setPetRestrictions(mate.getPetRestrictions() != null ? mate.getPetRestrictions() : "");
+        mate.setParking(mate.getParking() != null ? mate.getParking() : "N");
+        mate.setIndoor(mate.getIndoor() != null ? mate.getIndoor() : "N");
+        mate.setOutdoor(mate.getOutdoor() != null ? mate.getOutdoor() : "N");
+        mate.setPetSize(mate.getPetSize() != null ? mate.getPetSize() : "");
+        mate.setPetFriendly(mate.getPetFriendly() != null ? mate.getPetFriendly() : "N");
     }
 
     private MateVO mergeMateData(MateVO infant, MateVO pet) {
@@ -161,22 +202,22 @@ public class MateServiceImpl implements MateService {
             mate.setBlogUrl(node.path("블로그 주소").asText(""));
             mate.setFacebookUrl(node.path("페이스북 주소").asText(""));
             mate.setInstargramUrl(node.path("인스타 주소").asText(""));
-            mate.setEntryFee(node.path("입장료 유무 여부").asText("").isEmpty() ? 'N' : node.path("입장료 유무 여부").asText().charAt(0));
-            mate.setFreeParking(node.path("무료주차 가능여부").asText("").isEmpty() ? 'N' : node.path("무료주차 가능여부").asText().charAt(0));
-            mate.setPaidParking(node.path("유료주차 가능여부").asText("").isEmpty() ? 'N' : node.path("유료주차 가능여부").asText().charAt(0));
+            mate.setEntryFee(node.path("입장료 유무 여부").asText("").isEmpty() ? "N" : node.path("입장료 유무 여부").asText());
+            mate.setFreeParking(node.path("무료주차 가능여부").asText("").isEmpty() ? "N" : node.path("무료주차 가능여부").asText());
+            mate.setPaidParking(node.path("유료주차 가능여부").asText("").isEmpty() ? "N" : node.path("유료주차 가능여부").asText());
             mate.setEntryAge(node.path("입장 가능 나이").asText(""));
-            mate.setFamilyToilet(node.path("가족 화장실 보유 여부").asText("").isEmpty() ? 'N' : node.path("가족 화장실 보유 여부").asText().charAt(0));
-            mate.setStrollerRental(node.path("유모차 대여 여부").asText("").isEmpty() ? 'N' : node.path("유모차 대여 여부").asText().charAt(0));
-            mate.setNursingRoom(node.path("수유실 보유 여부").asText("").isEmpty() ? 'N' : node.path("수유실 보유 여부").asText().charAt(0));
-            mate.setKidZone(node.path("키즈존 여부").asText("").isEmpty() ? 'N' : node.path("키즈존 여부").asText().charAt(0));
+            mate.setFamilyToilet(node.path("가족 화장실 보유 여부").asText("").isEmpty() ? "N" : node.path("가족 화장실 보유 여부").asText());
+            mate.setStrollerRental(node.path("유모차 대여 여부").asText("").isEmpty() ? "N" : node.path("유모차 대여 여부").asText());
+            mate.setNursingRoom(node.path("수유실 보유 여부").asText("").isEmpty() ? "N" : node.path("수유실 보유 여부").asText());
+            mate.setKidZone(node.path("키즈존 여부").asText("").isEmpty() ? "N" : node.path("키즈존 여부").asText());
         } else {
             mate.setPetCompanionFee(node.path("애견 동반 추가 요금").asText(""));
             mate.setPetRestrictions(node.path("반려동물 제한사항").asText(""));
-            mate.setParking(node.path("주차 가능여부").asText("").isEmpty() ? 'N' : node.path("주차 가능여부").asText().charAt(0));
-            mate.setIndoor(node.path("장소(실내) 여부").asText("").isEmpty() ? 'N' : node.path("장소(실내) 여부").asText().charAt(0));
-            mate.setOutdoor(node.path("장소(실외) 여부").asText("").isEmpty() ? 'N' : node.path("장소(실외) 여부").asText().charAt(0));
+            mate.setParking(node.path("주차 가능여부").asText("").isEmpty() ? "N" : node.path("주차 가능여부").asText());
+            mate.setIndoor(node.path("장소(실내) 여부").asText("").isEmpty() ? "N" : node.path("장소(실내) 여부").asText());
+            mate.setOutdoor(node.path("장소(실외) 여부").asText("").isEmpty() ? "N" : node.path("장소(실외) 여부").asText());
             mate.setPetSize(node.path("입장 가능 동물 크기").asText(""));
-            mate.setPetFriendly(node.path("반려동물 동반 가능정보").asText("").isEmpty() ? 'N' : node.path("반려동물 동반 가능정보").asText().charAt(0));
+            mate.setPetFriendly(node.path("반려동물 동반 가능정보").asText("").isEmpty() ? "N" : node.path("반려동물 동반 가능정보").asText());
         }
 
         return mate;

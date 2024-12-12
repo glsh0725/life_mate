@@ -72,14 +72,8 @@
                 <button class="delete-btn" onclick="deletePost(${post.id})">삭제</button>
             </div>
         </div>
+    <script src="${contextPath}/js/community/communityview.js"></script>
     </main>
-    <script>
-        // 삭제 기능 스크립트
-        function deletePost(postId) {
-            if (confirm("게시물을 삭제하시겠습니까?")) {
-                location.href = `${contextPath}/deletePost.do?id=${postId}`;
-            }
-        }
-    </script>
+
 </body>
 </html>

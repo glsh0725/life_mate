@@ -5,7 +5,12 @@
 
     <select id="selectAllUserList" resultType="UserVO">
         <![CDATA[
-        select *
+        select usr_id,
+               usr_password,
+               usr_nickname,
+               usr_email,
+               usr_email_optout,
+               TO_CHAR(usr_join_date, 'YYYY-MM-DD') AS usr_join_date
         from lm_user
         order by usr_join_date desc
         ]]>
@@ -13,10 +18,44 @@
 
     <select id="selectAllCommunityList" resultType="CommunityVO">
         <![CDATA[
-        select *
+        select com_post_number,
+               COALESCE(com_title, 'N/A')           AS com_title,
+               COALESCE(usr_id, 'N/A')        AS usr_id,
+               COALESCE(com_report_count, 0)        AS com_report_count,
+               TO_CHAR(com_post_date, 'YYYY-MM-DD') AS com_post_date
         from lm_community
         order by com_post_number desc
         ]]>
+    </select>
+
+    <delete id="deleteUser" parameterType="String">
+        <![CDATA[
+        delete
+        from lm_user
+        where usr_id = #{usr_id}
+        ]]>
+    </delete>
+
+    <delete id="deleteCommunity" parameterType="String">
+        <![CDATA[
+        delete
+        from lm_community
+        where com_post_number = #{com_post_number}
+        ]]>
+    </delete>
+
+    <select id="listUsersPaging" resultType="UserVO">
+        <![CDATA[
+        select usr_id, usr_password, usr_nickname, usr_email, usr_email_optout, usr_join_date
+        from lm_user
+        order by usr_id
+        offset #{offset} rows fetch next #{pageSize} rows only
+        ]]>
+    </select>
+
+    <select id="getTotalUser" resultType="int">
+        select count(*)
+        from lm_user
     </select>
 
 </mapper>

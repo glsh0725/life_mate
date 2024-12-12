@@ -37,8 +37,8 @@
             </div>
 
             <div class="form-group">
-                <label for="tag">여행 태그</label>
-                <select name="tag" id="tag" required>
+                <label for="com_duration">여행 태그</label>
+                <select name="com_duration" id="com_duration" required>
                     <option value="당일여행">당일여행</option>
                     <option value="1박2일">1박2일</option>
                     <option value="2박3일">2박3일</option>

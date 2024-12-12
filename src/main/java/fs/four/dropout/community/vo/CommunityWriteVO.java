@@ -19,6 +19,7 @@ public class CommunityWriteVO {
     private String com_video_name;
     private String com_video_path;
     private String com_content;
+    private String usr_id;
     @DateTimeFormat(pattern = "YYYY-MM-DD")
     private Date com_post_date;
 
@@ -120,5 +121,13 @@ public class CommunityWriteVO {
 
     public void setCom_post_date(Date com_post_date) {
         this.com_post_date = com_post_date;
+    }
+
+    public String getUsr_id() {
+        return usr_id;
+    }
+
+    public void setUsr_id(String usr_id) {
+        this.usr_id = usr_id;
     }
 }

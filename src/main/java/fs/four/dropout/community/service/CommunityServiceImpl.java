@@ -2,6 +2,7 @@ package fs.four.dropout.community.service;
 
 import fs.four.dropout.community.dao.CommunityDAO;
 import fs.four.dropout.community.vo.CommunityVO;
+import fs.four.dropout.community.vo.CommunityViewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,5 +26,10 @@ public class CommunityServiceImpl implements CommunityService {
         postsList = communityDAO.selectAllPostList();
 
         return postsList;
+    }
+
+    @Override
+    public CommunityViewVO getPostById(Number postId) {
+        return null;
     }
 }

@@ -16,11 +16,8 @@ public class MateControllerImpl implements MateController {
     @Autowired
     private MateService mateService;
 
-    // Mate 데이터를 조회하여 JSP로 전달
     @GetMapping("/mate")
-    public String mainPage(Model model) {
-        List<MateVO> mateList = mateService.getAllMates();
-        model.addAttribute("mateList", mateList);
+    public String mainPage() {
         return "mate/mate";
     }
 

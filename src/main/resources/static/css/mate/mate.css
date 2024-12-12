@@ -198,6 +198,10 @@ td {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+.modal-content p {
+    margin: 6px 0;
+}
+
 .close-btn {
     color: #aaa;
     float: right;

@@ -47,7 +47,11 @@ public class CommunityWriteControllerImpl implements CommunityWriteController {
             return new ModelAndView("redirect:/login");
         }
 
+        System.out.println("Logged-in user ID: " + userVO.getUsr_id());
+        System.out.println("Logged-in user Nickname: " + userVO.getUsr_nickname());
+
         communityWrite.setUsr_id(userVO.getUsr_id());
+        communityWrite.setUsr_nickname(userVO.getUsr_nickname());
         String comDuration = communityWrite.getCom_duration();
 
         int result = 0;

@@ -20,7 +20,7 @@
         <![CDATA[
         select com_post_number,
                COALESCE(com_title, 'N/A')           AS com_title,
-               COALESCE(usr_id, 'N/A')        AS usr_id,
+               COALESCE(usr_nickname, 'N/A')        AS usr_nickname,
                COALESCE(com_report_count, 0)        AS com_report_count,
                TO_CHAR(com_post_date, 'YYYY-MM-DD') AS com_post_date
         from lm_community
@@ -56,6 +56,27 @@
     <select id="getTotalUser" resultType="int">
         select count(*)
         from lm_user
+    </select>
+
+    <select id="listCommunityPaging" resultType="CommunityVO">
+        <![CDATA[
+        select com_post_number,
+               com_title,
+               usr_nickname,
+               com_report_count,
+               com_post_date
+        from lm_community
+        order by com_post_number desc
+        offset #{offset} rows fetch next #{pageSize} rows only
+        ]]>
+    </select>
+
+    <!-- 전체 커뮤니티 게시글 수 -->
+    <select id="getTotalCommunity" resultType="int">
+        <![CDATA[
+        select count(*)
+        from lm_community
+        ]]>
     </select>
 
 </mapper>

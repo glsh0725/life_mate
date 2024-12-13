@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="fs.four.dropout.community.dao.CommunityWriteDAO">
-    <resultMap id="communityResult" type="communityVO">
+    <resultMap id="communityResult" type="communityWriteVO">
         <result property="com_title" column="com_title"/>
         <result property="com_location" column="com_location"/>
         <result property="com_duration" column="com_duration"/>
@@ -10,11 +10,11 @@
         <result property="com_post_date" column="com_post_date"/>
     </resultMap>
 
-    <insert id="insertCommunityWrite" parameterType="communityWriteVO" useGeneratedKeys="true" keyProperty="com_post_number">
+    <insert id="insertCommunityWrite" parameterType="fs.four.dropout.community.vo.CommunityWriteVO" useGeneratedKeys="true" keyProperty="com_post_number">
         <![CDATA[
-        insert into lm_community(com_post_number, com_title, usr_id, com_location, com_content, com_duration)
-        values (post_seq.nextval, #{com_title}, #{usr_id, jdbcType=VARCHAR}, #{com_location}, #{com_content}, #{com_duration, jdbcType=VARCHAR})
-        ]]>
+        insert into lm_community(com_post_number, com_title, usr_id, usr_nickname, com_location, com_content, com_duration)
+        values (post_seq.nextval, #{com_title}, #{usr_id, jdbcType=VARCHAR}, #{usr_nickname, jdbcType=VARCHAR}, #{com_location}, #{com_content}, #{com_duration})
+    ]]>
     </insert>
 
 </mapper>

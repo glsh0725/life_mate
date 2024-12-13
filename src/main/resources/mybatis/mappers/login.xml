@@ -5,7 +5,7 @@
 
     <select id="UserLogin" resultType="userVO" parameterType="userVO">
 	<![CDATA[
-        select usr_id, usr_password, role
+        select usr_id, usr_nickname, usr_password, role
         from lm_user
         where usr_id = #{usr_id}
           and usr_password = #{usr_password}

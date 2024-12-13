@@ -28,8 +28,8 @@
     </div>
     <div class="header-container">
         <a href="${contextPath}/main" class="logo">
-            <img width="100" height="90" src="${contextPath}/images/logo.png">
-            <img width="250" height="90" src="${contextPath}/images/name.png">
+            <img width="80" height="70" src="${contextPath}/images/logo.png">
+            <img width="230" height="70" src="${contextPath}/images/name.png">
         </a>
         <nav class="navbar">
             <ul>

@@ -35,21 +35,25 @@ public class AdminControllerImpl implements AdminController {
     public ModelAndView listUsersPaging(HttpServletRequest request,
                                   HttpServletResponse response,
                                         @RequestParam(defaultValue = "0") int page,
-                                        @RequestParam(defaultValue = "10") int size) throws Exception {
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "0") int communityPage,
+                                        @RequestParam(defaultValue = "10") int communitySize) throws Exception {
         List<UserVO> userListPage = adminService.listUsersPaging(page, size);
 
         int totalUsers = adminService.getTotalUser();
 
-//        List usersList = adminService.listUsers();
-        List communityList = adminService.listCommunity();
+        List<CommunityVO> communityListPage = adminService.listCommunityPaging(communityPage, communitySize);
+        int totalCommunity = adminService.getTotalCommunity();
 
         ModelAndView mav = new ModelAndView("/admin/admin");
 
         mav.addObject("usersList", userListPage);
-        mav.addObject("communityList", communityList);
+        mav.addObject("communityList", communityListPage);
 
         mav.addObject("totalPages", (int) Math.ceil((double) totalUsers / size));
         mav.addObject("currentPage", page);
+        mav.addObject("totalCommunityPages", (int) Math.ceil((double) totalCommunity / communitySize));
+        mav.addObject("currentCommunityPage", communityPage);
         return mav;
     }
 

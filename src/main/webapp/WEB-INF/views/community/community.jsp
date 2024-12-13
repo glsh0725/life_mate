@@ -30,7 +30,7 @@
             <div class="content">
                 <h3 class="title">${post.com_title}</h3>
                 <p class="location">${post.com_location}</p>
-                <p class="author">아이디 | ${post.usr_id}</p>
+                <p class="author">닉네임 | ${post.usr_nickname}</p>
                 <p class="date">작성날짜: ${post.com_post_date}</p>
                 <div class="stats">
                     ❤️ ${post.com_like_count} | 💬 ${post.com_comment_count} | 👀 ${post.com_view_count}

@@ -14,7 +14,7 @@
     <meta charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
-    <link rel="stylesheet" href="${contextPath}/static/css/user/login.css">
+    <link rel="stylesheet" href="${contextPath}/css/user/login.css">
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
     <script>
         var message = "${message}";

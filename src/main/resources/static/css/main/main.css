@@ -90,7 +90,8 @@ main.fixed::-webkit-scrollbar {
     align-self: flex-end;
     width: 25%;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     color: #fff;
     background-color: #B49BA0;
     text-decoration: none;
@@ -155,14 +156,14 @@ main.fixed::-webkit-scrollbar {
 .slide-delay-bar {
     flex: 1;
     height: 10px;
-    background-color: #ddd;
+    background-color: #BDBDBD;
     overflow: hidden;
     border-radius: 5px;
 }
 
 .delay-bar-progress {
     height: 100%;
-    background-color: #9536FF;
+    background-color: #A07468;
     transition: width 0.1s linear;
 }
 
@@ -181,15 +182,16 @@ main.fixed::-webkit-scrollbar {
 .slide-controls button {
     padding: 5px 10px;
     font-size: 16px;
+    font-weight: bold;
     border: 1px solid #ccc;
-    background-color: #f0f0f0;
+    background-color: #B49BA0;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .slide-controls button:hover {
-    background-color: #e0e0e0;
+    background-color: #685858;
 }
 
 .introduce {
@@ -206,7 +208,7 @@ main.fixed::-webkit-scrollbar {
     border: 2px solid #d3d3d3;
     border-radius: 10px;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .intro-item {
@@ -236,7 +238,7 @@ main.fixed::-webkit-scrollbar {
     border: 2px solid #d3d3d3;
     border-radius: 10px;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
+    margin-left: 5px;
     padding-left: 1%;
 }
 
@@ -245,7 +247,7 @@ main.fixed::-webkit-scrollbar {
     top: 34%;
     left: 55%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 90%;
 }
 
 .detail-item {
@@ -260,20 +262,21 @@ main.fixed::-webkit-scrollbar {
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 2.5%;
+    margin-top: 2%;
     margin-bottom: 2.5%;
 }
 
 .detail-item h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
     color: #8B4513;
 }
 
 .detail-item .button {
     display: inline-block;
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 5px 15px;
+    font-size: 17px;
+    font-weight: bold;
     text-decoration: none;
     color: #fff;
     background-color: #B49BA0;
@@ -297,6 +300,7 @@ main.fixed::-webkit-scrollbar {
     border: none;
     border-radius: 5px;
     font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.3s ease;

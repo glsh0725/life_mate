@@ -71,4 +71,14 @@ public class AdminServiceImpl implements AdminService {
     public int getTotalUser() {
         return adminDAO.getTotalUser();
     }
+
+    @Override
+    public List<CommunityVO> listCommunityPaging(int communityPage, int communitySize) {
+        int offset = communityPage * communitySize;
+        return adminDAO.listCommunityPaging(offset, communitySize);
+    }
+    @Override
+    public int getTotalCommunity() {
+        return adminDAO.getTotalCommunity();
+    }
 }

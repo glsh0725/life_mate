@@ -1,20 +1,105 @@
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
+
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
+
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
+
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    if (evt) evt.currentTarget.className += " active";
+
+    if (tabName === 'tab1') {
+        loadUserPage(0);
+    } else if (tabName === 'tab2') {
+        loadCommunityPage(0);
+    }
 }
 
-// 관리자 페이지 기본값: 회원 관리
+function loadCommunityPage(page) {
+    if (document.getElementById("tab2").style.display === "block") {
+        $.get(`${contextPath}/admin`, { communityPage: page, communitySize: 10 })
+            .done(function (data) {
+                $('#communitytable tbody').html(data.communityListHTML);
+                generatePagination(page, data.totalPages, 'community');
+            });
+    }
+}
+
+function handleCommunityPaging(page) {
+    openTab(null, 'tab2');
+    loadCommunityPage(page);
+}
+
+function generatePagination(currentPage, totalPages, type) {
+    let pagination = '';
+    for (let i = 0; i < totalPages; i++) {
+        pagination += `<a href="javascript:void(0);" onclick="handleCommunityPaging(${i})">${i + 1}</a> `;
+    }
+    if (type === 'community') {
+        $('#communityPagination').html(pagination);
+    }
+}
+
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const communityPage = urlParams.get('communityPage');
+    if (communityPage) {
+        openTab(null, 'tab2');
+        loadCommunityPage(communityPage - 1);
+    } else {
+        openTab(null, 'tab1');
+        loadUserPage(0);
+    }
+};
+
 document.getElementById("tab1").style.display = "block";
 document.getElementsByClassName("tablink")[0].className += " active";
+
+function loadUserPage(page) {
+    currentUserPage = page;
+    if (document.getElementById("tab1").style.display === "block") {
+        $.get(`${contextPath}/admin`, { userPage: page, userSize: 10 })
+            .done(function (data) {
+                $('#usertable tbody').html(data.usersListHTML);
+                generatePagination(currentUserPage, data.totalPages, 'user');
+            });
+    }
+}
+
+function loadCommunityPage(page) {
+    currentCommunityPage = page;
+    if (document.getElementById("tab2").style.display === "block") {
+        $.get(`${contextPath}/admin`, { communityPage: page, communitySize: 10 })
+            .done(function (data) {
+                $('#communitytable tbody').html(data.communityListHTML);
+                generatePagination(currentCommunityPage, data.totalPages, 'community');
+            });
+    }
+}
+
+function generatePagination(currentPage, totalPages, type) {
+    let pagination = '';
+    for (let i = 0; i < totalPages; i++) {
+        pagination += `<a href="javascript:void(0);" onclick="load${type.charAt(0).toUpperCase() + type.slice(1)}Page(${i})">${i + 1}</a> `;
+    }
+    if (type === 'user') {
+        $('#userPagination').html(pagination);
+    } else if (type === 'community') {
+        $('#communityPagination').html(pagination);
+    }
+}
+
+$(document).on('click', '.pagination-link', function(event) {
+    event.preventDefault();
+    const targetPage = $(this).data('page');
+    loadCommunityPage(targetPage);
+});
 
 // 삭제 확인
 function confirmDelete() {
@@ -179,7 +264,7 @@ function getSearchList2() {
             <tr align="center">
                         <td><b>번호</b></td>
                         <td><b>제목</b></td>
-                        <td><b>아이디</b></td>
+                        <td><b>닉네임</b></td>
                         <td><b>신고 내역</b></td>
                         <td><b>작성 날짜</b></td>
                         <td><b>삭제</b></td>
@@ -196,7 +281,7 @@ function getSearchList2() {
                 <tr align="center">
                             <td>${community.com_post_number || "N/A"}</td>
                             <td>${community.com_title || "N/A"}</td>
-                            <td>${community.usr_id || "N/A"}</td>
+                            <td>${community.usr_nickname || "N/A"}</td>
                             <td>${community.com_report_count || 0}건</td>
                             <td>${community.com_post_date || "N/A"}</td>
                             <td>

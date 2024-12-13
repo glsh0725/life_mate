@@ -43,12 +43,5 @@ public class CommunityControllerImpl implements CommunityController {
     public String communitySave() {
         return "community/save";
     }
-
-    // 게시글 상세 보기 기능 추가
-    @GetMapping("/community/view")
-    public ModelAndView viewPost(@RequestParam("postId") Number postId) {
-        ModelAndView mav = new ModelAndView("community/communityview");  // views/community/communityview.jsp
-        mav.addObject("postId", postId);
-        return mav;
-    }
 }
+

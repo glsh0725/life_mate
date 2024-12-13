@@ -1,6 +1,10 @@
 .festival-main {
     width: 90%;
-    margin: 0 auto;
+    margin: 100px auto 0;
+}
+
+.festival-main h1 {
+    color: #8B4513;
 }
 
 .festival-section {
@@ -33,11 +37,15 @@
 #calendar th {
     height: 50px;
     background-color: #f5f5f5;
+    font-size: 28px;
+    font-weight: bolder;
 }
 
 #calendar td {
     height: 100px;
     background-color: #f5f5f5;
+    font-size: 40px;
+    font-weight: bolder;
 }
 
 #calendar td:hover {

@@ -27,9 +27,4 @@ public class CommunityServiceImpl implements CommunityService {
 
         return postsList;
     }
-
-    @Override
-    public CommunityViewVO getPostById(Number postId) {
-        return null;
-    }
 }

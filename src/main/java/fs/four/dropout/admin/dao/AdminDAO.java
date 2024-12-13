@@ -1,5 +1,6 @@
 package fs.four.dropout.admin.dao;
 
+import fs.four.dropout.community.vo.CommunityVO;
 import fs.four.dropout.user.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,5 +23,8 @@ public interface AdminDAO {
     List<UserVO> listUsersPaging(@Param("offset") int offset, @Param("pageSize") int pageSize);
 
     int getTotalUser();
+
+    List<CommunityVO> listCommunityPaging(@Param("offset") int offset, @Param("pageSize") int pageSize);
+    int getTotalCommunity();
 
 }

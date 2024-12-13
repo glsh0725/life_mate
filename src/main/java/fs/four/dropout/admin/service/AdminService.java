@@ -22,4 +22,8 @@ public interface AdminService {
     public List<UserVO> listUsersPaging(int page, int size);
 
     public int getTotalUser();
+
+    public List<CommunityVO> listCommunityPaging(int communityPage, int communitySize);
+
+    public int getTotalCommunity();
 }

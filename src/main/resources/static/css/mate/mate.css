@@ -7,10 +7,16 @@
 
 .region-choice {
     text-align: center;
-    border: 3px solid #ddd;
+    border: 3px solid #8B4513;
     border-radius: 10px;
-    padding: 0px 30px;
+    padding: 0px 20px;
     margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.region-choice h2 {
+    color: #8B4513;
+    margin: 7px;
 }
 
 .region-buttons {
@@ -18,20 +24,21 @@
     display: flex;
     flex-wrap: wrap;
     gap: 3%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     align-items: center;
     justify-content: space-between;
 }
 
 .region-button {
-    padding: 2%;
-    background-color: #f4f4f4;
+    padding: 1.5%;
+    background-color: #D6BCB0;
     border: 1px solid #ddd;
     border-radius: 50%;
     cursor: pointer;
     font-size: 20px;
+    font-weight: bold;
     transition: background-color 0.3s;
-    margin: 0.3%;
+    margin: 0.4%;
 }
 
 .region-button:hover {
@@ -62,11 +69,12 @@
 }
 
 #search-button {
-    padding: 10px 20px;
-    background-color: #f4f4f4;
+    padding: 7px 10px;
+    background-color: #D6BCB0;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -86,13 +94,14 @@
 }
 
 .filter-button {
-    background-color: #f4f4f4;
+    background-color: #D6BCB0;
     color: #333;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px 20px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -120,7 +129,8 @@ th {
     background-color: #e6c8a9;
     color: black;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 2px solid #A0867A;
+    font-size: 18px;
     font-weight: bold;
     word-wrap: break-word;
     padding: 3px;
@@ -129,9 +139,21 @@ th {
 td {
     width: 100%;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 2px solid #A0867A;
+    font-size: 16px;
+    font-weight: bold;
     word-wrap: break-word;
     padding: 3px;
+}
+
+.view-details-btn {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #B49BA0;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .pagination {
@@ -150,11 +172,15 @@ td {
     color: #333;
     border: 1px solid #ddd;
     border-radius: 4px;
-    padding: 5px 10px;
+    padding: 2px 10px;
     font-size: 18px;
+    font-weight: bold;
     white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .pagination a:hover {

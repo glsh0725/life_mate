@@ -1,36 +1,165 @@
-/*모달 팝업 영역 스타일링*/
-.termsModal {
-/*팝업 배경*/
-	display: none; /*평소에는 보이지 않도록*/
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background: rgba(0,0,0,0.5);
-}
-.termsModal .terms_popup {
-/*팝업*/
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 20px;
-}
-.termsModal .terms_popup .close_btn {
-    display: block;
-    padding: 10px 20px;
-    background-color: rgb(116, 0, 0);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: box-shadow 0.2s;
+
+/* 전체 페이지 배경 및 폰트 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #FFF0F8;  /* 부드러운 분홍빛 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23FFB6C1" fill-opacity="0.3"><path d="M11 18 C15 22, 15 30, 11 34 C7 38, -1 38, -5 34 C-9 30, -9 22, -5 18 C-1 14, 7 14, 11 18 Z" transform="translate(50, 50)"/></g></svg>');
+    background-repeat: repeat;
 }
 
-.termsModal.on {
+/* 회원가입 컨테이너 */
+.join-container {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+    padding: 40px;
+    width: 450px;
+    animation: soft-entrance 0.7s ease;
+}
+
+@keyframes soft-entrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 제목 스타일 */
+.join-container h1 {
+    color: #FF69B4;  /* 핑크 계열 타이틀 */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+}
+
+/* 폼 그룹 공통 스타일 */
+.form-group-userId,
+.form-group-password,
+.form-group-confirmPassword,
+.form-group-nickname,
+.form-group-email,
+.form-group-emailOptOut,
+.form-group-termsAgree {
+    margin-bottom: 20px;
+}
+
+/* 라벨 스타일 */
+label {
+    color: #FF1493;
+    font-weight: bold;
     display: block;
+    margin-bottom: 8px;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #FFB6C1;
+    border-radius: 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+}
+
+/* 라디오 버튼과 체크박스 스타일 */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* 이메일 수신 여부 라디오 버튼 */
+.form-group-emailOptOut label {
+    display: inline-block;
+    margin-right: 15px;
+    color: #666;
+}
+
+/* 이용약관 동의 체크박스 */
+.form-group-termsAgree {
+    display: flex;
+    align-items: center;
+}
+
+.form-group-termsAgree label {
+    margin-bottom: 0;
+    color: #666;
+}
+
+/* 회원가입 버튼 */
+.form-group-join button {
+    width: 100%;
+    padding: 15px;
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+.form-group-join button:hover {
+    background-color: #FF1493;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 70%;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    color: #FF69B4;
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* 스크롤바 스타일 */
+.modal-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #FF69B4;
+    border-radius: 5px;
 }

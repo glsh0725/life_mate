@@ -10,7 +10,14 @@ public interface AdminController {
     public ModelAndView listUsersPaging(HttpServletRequest request,
                                   HttpServletResponse response,
                                         @RequestParam(defaultValue = "0") int page,
-                                        @RequestParam(defaultValue = "10") int size) throws Exception;
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "0") int communityPage,
+                                        @RequestParam(defaultValue = "10") int communitySize) throws Exception;
+
+//    public ModelAndView listCommunityPaging(HttpServletRequest request,
+//                                            HttpServletResponse response,
+//                                            @RequestParam(defaultValue = "0") int communityPage,
+//                                            @RequestParam(defaultValue = "10") int communitySize) throws Exception;
 
     public ModelAndView removeUser(@RequestParam("id") String id,
                                    HttpServletRequest request,
@@ -19,4 +26,11 @@ public interface AdminController {
     public ModelAndView removeCommunity(@RequestParam("number") String number,
                                         HttpServletRequest request,
                                         HttpServletResponse response) throws Exception;
+
+//    public ModelAndView listUsersAndCommunityPaging(HttpServletRequest request,
+//                                                    HttpServletResponse response,
+//                                                    @RequestParam(defaultValue = "0") int userPage,
+//                                                    @RequestParam(defaultValue = "10") int userSize,
+//                                                    @RequestParam(defaultValue = "0") int communityPage,
+//                                                    @RequestParam(defaultValue = "10") int communitySize) throws Exception;
 }

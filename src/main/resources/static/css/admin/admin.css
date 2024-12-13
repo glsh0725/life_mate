@@ -35,11 +35,11 @@ main {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.tablink:hover,
-.tablink.active {
-    background-color: #FF7043;
-    transform: translateY(-2px);
-}
+/*.tablink:hover,*/
+/*.tablink.active {*/
+/*    background-color: #FF7043;*/
+/*    transform: translateY(-2px);*/
+/*}*/
 
 .tabcontent {
     display: none;

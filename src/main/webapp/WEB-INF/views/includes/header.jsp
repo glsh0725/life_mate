@@ -32,6 +32,11 @@
             <img width="230" height="70" src="${contextPath}/images/name.png">
         </a>
         <nav class="navbar">
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <ul>
                 <li>
                     <a href="${contextPath}/main" class="${pageContext.request.requestURI.contains('/main') ? 'active' : ''}">홈</a>

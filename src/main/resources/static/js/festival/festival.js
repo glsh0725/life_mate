@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalReferenceDate = document.getElementById("modal-referenceDate");
 
     prevMonthButton.textContent = "이전 달";
+    prevMonthButton.className = "prev-month-btn";
+
     nextMonthButton.textContent = "다음 달";
+    nextMonthButton.className = "next-month-btn";
 
     const calendarControls = document.querySelector(".calendar-controls");
     calendarControls.appendChild(prevMonthButton);
@@ -34,8 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function populateYearAndMonth(selectedDate) {
         const currentYear = new Date(selectedDate).getFullYear();
         const currentMonth = new Date(selectedDate).getMonth();
+        const presentYear = new Date().getFullYear();
 
-        for (let i = currentYear - 5; i <= currentYear + 5; i++) {
+        for (let i = presentYear - 2; i <= presentYear + 1; i++) {
             const option = document.createElement("option");
             option.value = i;
             option.textContent = i;

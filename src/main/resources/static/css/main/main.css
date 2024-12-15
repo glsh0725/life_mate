@@ -96,7 +96,7 @@ main.fixed::-webkit-scrollbar {
 }
 
 .list li strong {
-    color: rgb(150, 97, 255);
+    color: #9661FF;
     margin-right: 10px;
 }
 
@@ -303,7 +303,7 @@ main.fixed::-webkit-scrollbar {
 .detail-item h2 {
     margin: 0;
     font-size: 20px;
-    color: rgb(150, 97, 255);
+    color: #9661FF;
 }
 
 .detail-item .button {

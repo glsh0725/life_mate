@@ -20,7 +20,7 @@
         <h1>월별 축제달력</h1>
         <section class="calendar-section">
             <div class="calendar-controls">
-                <select id="year-select"></select>
+                <select id="year-select"></select>.
                 <select id="month-select"></select>
             </div>
             <div id="calendar"></div>
@@ -35,9 +35,11 @@
             <ul class="festival-list">
                 <c:forEach var="festival" items="${festivals}">
                     <li class="festival-item">
-                        <div class="festival-title">${festival.fstvlNm}</div>
-                        <div class="festival-dates">${festival.fstvlStartDate} ~ ${festival.fstvlEndDate}</div>
-                        <div class="festival-address">${festival.address}</div>
+                        <div class="festival-text">
+                            <div class="festival-title">${festival.fstvlNm}</div>
+                            <div class="festival-dates">${festival.fstvlStartDate} ~ ${festival.fstvlEndDate}</div>
+                            <div class="festival-address">${festival.address}</div>
+                        </div>
                     </li>
                     <script>
                         window.festivalData = window.festivalData || [];

@@ -54,3 +54,4 @@
         </nav>
     </div>
 </header>
+<script src="${contextPath}/js/includes/header.js"></script>

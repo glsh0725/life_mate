@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group-memory">
-                    <input type="checkbox" id="idMemory" name="idMemory" required>
+                    <input type="checkbox" id="idMemory" name="idMemory">
                     <label for="idmemory">아이디 기억</label>
                 </div>
 

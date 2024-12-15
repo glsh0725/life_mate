@@ -1,0 +1,202 @@
+html {
+    scroll-behavior: smooth;
+    background-color: #f3f3f3;
+}
+
+main {
+    width: 95%;
+    margin: 50px auto;
+}
+
+.post-container {
+    margin-top: 110px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.post-header table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-header tr {
+    width: 100%;
+}
+
+.post-header th {
+    width: 12%;
+    text-align: left;
+    padding: 10px;
+    background-color: #f6f6ff;
+    color: #6A3DC4;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-header td {
+    padding: 10px;
+    color: #333333;
+    font-size: 14px;
+}
+
+.post-header th,
+.post-header td {
+    border: 1px solid #C7C4FF;
+}
+
+.post-content textarea {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #C7C4FF;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f6eefc;
+    font-size: 14px;
+    color: #333333;
+    box-sizing: border-box;
+    resize: none;
+    margin-top: 15px;
+}
+
+.post-interactions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+    font-size: 16px;
+    color: #6A3DC4;
+}
+
+.post-interactions .like-icon,
+.post-interactions .comment-icon {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.comments-section {
+    margin-top: 20px;
+    min-height: 50px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #C7C4FF;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment strong {
+    color: #6A3DC4;
+    font-size: 14px;
+}
+
+.comment p {
+    flex: 1;
+    margin: 0 10px;
+    color: #333333;
+    font-size: 14px;
+}
+
+.report-btn {
+    padding: 5px 10px;
+    background-color: #B589FF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.report-btn:hover {
+    background-color: #A77BEF;
+}
+
+.comment-input {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.comment-input textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #C7C4FF;
+    border-radius: 4px;
+    resize: none;
+    height: 80px;
+}
+
+.register-btn {
+    position: absolute;
+    top: 74%;
+    right: 0.3%;
+    transform: translateY(-50%);
+    padding: 7px 14px;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+}
+
+.register-btn:hover {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+}
+
+.post-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.post-buttons button {
+    width: 12%;
+    padding: 5px;
+    margin: 0 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+}
+
+.modify-btn {
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: white;
+}
+
+.modify-btn:hover {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+}
+
+.list-btn {
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: white;
+}
+
+.list-btn:hover {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+}
+
+.delete-btn {
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: white;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+}

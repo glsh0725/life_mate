@@ -18,7 +18,7 @@
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
-    <main>
+    <main class="community-main">
     <div class="board-container">
 
 <%--     <form action="${pageContext.request.contextPath}/community" method="get" id="adminForm">--%>
@@ -69,7 +69,7 @@
         </select>
         <input type="text" id="search" placeholder="검색어를 입력하세요">
         <button onclick="searchPosts()">검색</button>
-        <button onclick="location.href='communitywrite'">글쓰기</button>
+        <button class="write" onclick="location.href='communitywrite'">글쓰기</button>
     </div>
     </main>
 </body>

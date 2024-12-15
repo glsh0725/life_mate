@@ -63,9 +63,7 @@
 
                 <div id="myModal" class="modal">
                         <div class="modal-content">
-                            <span class="close-btn">&times;</span>
-                            <h2>이용약관</h2>
-
+                            <span class="close-btn">X</span>
                             <div class="modal-body">
                                 <h1>[LIFEMATE] 이용약관</h1>
 

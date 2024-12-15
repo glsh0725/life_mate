@@ -1,129 +1,111 @@
+html {
+    scroll-behavior: smooth;
+    background-color: #f3f3f3;
+}
 
-/* 전체 페이지 배경 및 폰트 */
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #FFF0F8;  /* 부드러운 분홍빛 배경 */
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     margin: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23FFB6C1" fill-opacity="0.3"><path d="M11 18 C15 22, 15 30, 11 34 C7 38, -1 38, -5 34 C-9 30, -9 22, -5 18 C-1 14, 7 14, 11 18 Z" transform="translate(50, 50)"/></g></svg>');
-    background-repeat: repeat;
+    padding: 20px;
 }
 
-/* 회원가입 컨테이너 */
-.join-container {
-    background-color: white;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
-    padding: 40px;
-    width: 450px;
-    animation: soft-entrance 0.7s ease;
+main {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    max-width: 600px;
+    margin: 50px 20px 0 20px;
 }
 
-@keyframes soft-entrance {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 제목 스타일 */
-.join-container h1 {
-    color: #FF69B4;  /* 핑크 계열 타이틀 */
+h1 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.2em;
-    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #6A3DC4;
 }
 
-/* 폼 그룹 공통 스타일 */
 .form-group-userId,
 .form-group-password,
 .form-group-confirmPassword,
 .form-group-nickname,
 .form-group-email,
 .form-group-emailOptOut,
-.form-group-termsAgree {
+.form-group-termsAgree,
+.form-group-join {
     margin-bottom: 20px;
 }
 
-/* 라벨 스타일 */
 label {
-    color: #FF1493;
-    font-weight: bold;
     display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #9661FF;
     margin-bottom: 8px;
 }
 
-/* 입력 필드 스타일 */
 input[type="text"],
 input[type="password"],
 input[type="email"] {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #FFB6C1;
-    border-radius: 20px;
-    font-size: 16px;
-    transition: all 0.3s ease;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #C7C4FF;
+    border-radius: 4px;
+    background-color: #f6eefc;
+    margin-top: 2px;
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.2);
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus {
-    outline: none;
-    border-color: #FF69B4;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
-}
-
-/* 라디오 버튼과 체크박스 스타일 */
-input[type="radio"],
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-/* 이메일 수신 여부 라디오 버튼 */
-.form-group-emailOptOut label {
-    display: inline-block;
-    margin-right: 15px;
-    color: #666;
-}
-
-/* 이용약관 동의 체크박스 */
-.form-group-termsAgree {
+.form-group-emailOptOut {
     display: flex;
     align-items: center;
 }
 
-.form-group-termsAgree label {
-    margin-bottom: 0;
-    color: #666;
+input[type="radio"] {
+    margin: 0 10px 0 50px;
 }
 
-/* 회원가입 버튼 */
-.form-group-join button {
-    width: 100%;
-    padding: 15px;
-    background-color: #FF69B4;
+input[type="checkbox"] {
+    margin: 0 10px 0 10px;
+}
+
+.form-group-termsAgree {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group-join {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[type="submit"] {
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
     color: white;
     border: none;
-    border-radius: 25px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.2);
 }
 
-.form-group-join button:hover {
-    background-color: #FF1493;
+button[type="submit"]:hover {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
 }
 
-/* 모달 스타일 */
 .modal {
     display: none;
     position: fixed;
@@ -133,33 +115,54 @@ input[type="checkbox"] {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background: linear-gradient(135deg, #f6eefc, #ffffff);
     margin: 10% auto;
-    padding: 30px;
-    border-radius: 20px;
-    width: 70%;
-    max-height: 70vh;
+    padding: 25px;
+    border: 1px solid #C7C4FF;
+    width: 75%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    animation: fade-in 0.4s ease-out;
+    max-height: 65vh;
     overflow-y: auto;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
 .close-btn {
-    color: #FF69B4;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    color: #fff;
     float: right;
-    font-size: 30px;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
-}
-
-/* 스크롤바 스타일 */
-.modal-body::-webkit-scrollbar {
-    width: 10px;
-}
-
-.modal-body::-webkit-scrollbar-thumb {
-    background-color: #FF69B4;
+    border: none;
     border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+}
+
+.close-btn:hover {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+    color: #fff;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }

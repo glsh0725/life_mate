@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커뮤니티 글보기</title>
-    <link rel="stylesheet" href="${contextPath}/static/css/community/communityview.css">
+    <link rel="stylesheet" href="${contextPath}css/community/communityview.css">
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
@@ -24,7 +24,7 @@
                 <table>
                     <tr>
                         <th>제목</th>
-                        <td>${post.com_title}</td>
+                        <td colspan="5">${post.com_title}</td>
                     </tr>
                     <tr>
                         <th>닉네임</th>

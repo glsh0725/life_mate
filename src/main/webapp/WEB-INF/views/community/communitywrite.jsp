@@ -73,7 +73,7 @@
     <!-- 지역 선택 모달창 -->
     <div id="locationModal" class="modal">
         <div class="modal-content">
-            <span class="close-button" id="closeModal">&times;</span>
+            <span class="close-button" id="closeModal">X</span>
 
             <div class="location-selector">
                 <div class="section-title">지역 선택</div>

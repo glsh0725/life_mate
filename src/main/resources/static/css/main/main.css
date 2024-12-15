@@ -149,6 +149,7 @@ main.fixed::-webkit-scrollbar {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.2);
 }
 
 .slide2 {
@@ -158,6 +159,7 @@ main.fixed::-webkit-scrollbar {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.2);
 }
 
 .slide-control-container {

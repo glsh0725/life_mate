@@ -1,9 +1,19 @@
+html {
+    scroll-behavior: smooth;
+    background-color: #f3f3f3;
+}
+
 /* 전체 페이지 스타일 */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
     text-align: center;
-    background-color: #f8f9fa;
+}
+
+.community-main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* 게시물 컨테이너 스타일 */
@@ -13,7 +23,7 @@ body {
     gap: 10px; /* 간격 */
     padding-left: 40px;
     padding-right: 40px;
-    margin: 20px auto;
+    margin-top: 30px;
     justify-content: left;
 }
 
@@ -21,11 +31,11 @@ body {
 .board-card {
     width: 250px;
     height: 280px; /* 카드 높이 설정 */
-    border: 1px solid #ccc;
+    border: 1px solid #D4BFEF;
     border-radius: 8px;
     overflow: hidden;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #f6eefc;
+    box-shadow: 0 2px 4px rgba(212, 191, 239, 0.3);
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease;
@@ -47,7 +57,7 @@ body {
 
 /* 이미지 자리 표시자 */
 .image-placeholder {
-    background: #eee;
+    background: #f8f8f8;
     height: 120px;
     display: flex;
     align-items: center;
@@ -58,7 +68,7 @@ body {
 
 /* 태그 스타일 */
 .tag {
-    background: #f4a261;
+    background: #B589FF;
     color: #fff;
     padding: 4px 8px;
     font-size: 12px;
@@ -94,14 +104,16 @@ body {
 
 /* 페이지네이션 스타일 */
 .pagination {
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
 .pagination button {
-    border: 1px solid #ccc;
-    background: #fff;
+    border: 1px solid #C7C4FF;
+    background: #f6eefc;
+    font-weight: bold;
     padding: 6px 12px;
     margin: 0 5px;
     cursor: pointer;
@@ -110,38 +122,59 @@ body {
 }
 
 .pagination button:hover {
-    background: #007bff;
+    background: #B589FF;
     color: #fff;
 }
 
 .pagination button.active {
-    background: #007bff;
+    background: #A77BEF;
     color: #fff;
 }
 
 /* 검색 및 글쓰기 컨트롤 */
 .controls {
+    width: 75%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
-    gap: 10px;
+    margin-left: auto;
+    margin-right: 6.2%;
+    gap: 20px;
 }
 
 .controls select,
 .controls input[type="text"],
 .controls button {
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #C7C4FF;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+.controls select {
+    width: 15%;
+}
+
+.controls input {
+    width: 40%;
 }
 
 .controls button {
-    background: #007bff;
+    width: 10%;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    font-size: 16px;
+    font-weight: bold;
     color: #fff;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.write {
+    margin-left: auto;
 }
 
 .controls button:hover {
-    background: #0056b3;
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+    color: #fff;
 }

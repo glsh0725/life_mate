@@ -14,12 +14,17 @@ public class CommunityViewControllerImpl {
     @Autowired
     private CommunityViewService communityViewService;
 
-    @GetMapping("/community/communityview")
-    public String communityviewPage(@RequestParam("id") int id, Model model) {
-        // postId로 게시물 가져오기
-        CommunityViewVO post = communityViewService.getPostById(id);
-        model.addAttribute("post", post);
-        // view 페이지를 반환
-        return "community/communityview";  // communityview.jsp로 매핑
+    @GetMapping("/communityview")
+    public String communityviewPage() {
+        return "community/communityview";
     }
+
+//    @GetMapping("/communityview")
+//    public String communityviewPage(@RequestParam("id") int id, Model model) {
+//        // postId로 게시물 가져오기
+//        CommunityViewVO post = communityViewService.getPostById(id);
+//        model.addAttribute("post", post);
+//        // view 페이지를 반환
+//        return "community/communityview";  // communityview.jsp로 매핑
+//    }
 }

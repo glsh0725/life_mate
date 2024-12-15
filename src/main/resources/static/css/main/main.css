@@ -36,8 +36,8 @@ main.fixed::-webkit-scrollbar {
 
 .main-box {
     margin-top: 7%;
-    width: 70%;
-    height: 55%;
+    width: 65%;
+    height: auto;
     background-color: #FFFFFF;
     border: none;
     border-radius: 10px;
@@ -46,8 +46,8 @@ main.fixed::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible;
 }
 
 .main-box:hover {
@@ -69,10 +69,11 @@ main.fixed::-webkit-scrollbar {
 .main-box-header p {
     margin: 5px 0;
     width: 100%;
-    height: 100%;
+    height: 110px;
     font-size: 20px;
     font-weight: 500;
     color: black;
+    overflow: hidden;
 }
 
 .list {
@@ -114,6 +115,7 @@ main.fixed::-webkit-scrollbar {
     box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    margin: 20px 0 10px 0;
 }
 
 .main-button:hover {

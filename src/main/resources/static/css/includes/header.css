@@ -55,18 +55,18 @@ header {
 
 .navbar a {
     text-decoration: none;
-    color: black;
+    color: #2F2F36;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 .navbar a:hover {
-    color: #8A4924;
+    color: #6A3DC4;
 }
 
 .navbar a.active {
-    border-bottom: 3px solid #8A4924;
-    color: #8A4924;
+    border-bottom: 3px solid #6A3DC4;
+    color: #6A3DC4;
 }
 
 .auth-check {
@@ -93,5 +93,5 @@ header {
 }
 
 .auth-check a:hover {
-    color: #8A4924;
+    color: rgb(106, 61, 196);
 }

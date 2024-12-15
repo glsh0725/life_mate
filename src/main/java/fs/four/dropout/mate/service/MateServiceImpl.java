@@ -52,11 +52,20 @@ public class MateServiceImpl implements MateService {
         Map<String, MateVO> combinedMap = new HashMap<>();
 
         for (MateVO infant : infantData) {
-            combinedMap.put(infant.getFacilityName(), infant);
+            if (infant.getFacilityName() != null && !infant.getFacilityName().isEmpty()) {
+                combinedMap.put(infant.getFacilityName(), infant);
+            } else {
+                System.out.println("Skipping infant data with missing facility name: " + infant);
+            }
         }
 
         for (MateVO pet : petData) {
             String facilityName = pet.getFacilityName();
+            if (facilityName == null || facilityName.isEmpty()) {
+                System.out.println("Skipping pet data with missing facility name: " + pet);
+                continue;
+            }
+
             if (combinedMap.containsKey(facilityName)) {
                 MateVO existing = combinedMap.get(facilityName);
                 MateVO merged = mergeMateData(existing, pet);
@@ -69,6 +78,11 @@ public class MateServiceImpl implements MateService {
         List<MateVO> combinedList = new ArrayList<>(combinedMap.values());
 
         for (MateVO mate : combinedList) {
+            if (mate.getFacilityName() == null || mate.getFacilityName().isEmpty()) {
+                System.out.println("Skipping invalid data: Missing facility name. Data: " + mate);
+                continue;
+            }
+
             sanitizeMateVO(mate);
             if (!mateDAO.existsByFacilityName(mate.getFacilityName())) {
                 mateDAO.insertCombinedData(mate);
@@ -100,6 +114,13 @@ public class MateServiceImpl implements MateService {
     }
 
     private MateVO mergeMateData(MateVO infant, MateVO pet) {
+        if (infant.getFacilityName() == null || infant.getFacilityName().isEmpty()) {
+            throw new IllegalArgumentException("Invalid data: infant facility name is null or empty.");
+        }
+        if (pet.getFacilityName() == null || pet.getFacilityName().isEmpty()) {
+            throw new IllegalArgumentException("Invalid data: pet facility name is null or empty.");
+        }
+
         MateVO combined = new MateVO();
 
         combined.setFacilityName(infant.getFacilityName());
@@ -167,9 +188,15 @@ public class MateServiceImpl implements MateService {
     }
 
     private MateVO mapJsonToMateVO(JsonNode node, boolean isInfantData) {
-        MateVO mate = new MateVO();
+        String facilityName = node.path("시설명").asText("").trim(); // 공백 제거
+        if (facilityName.isEmpty()) {
+            System.out.println("Skipping invalid data: Missing facility name. Node: " + node);
+            return null;
+        }
 
-        mate.setFacilityName(node.path("시설명").asText(""));
+        MateVO mate = new MateVO();
+        mate.setFacilityName(facilityName);
+
         mate.setContact(node.path("전화번호").asText(""));
         mate.setOldAddress(node.path("지번주소").asText(""));
         mate.setNewAddress(node.path("도로명주소").asText(""));

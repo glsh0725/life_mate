@@ -138,45 +138,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
             row.querySelector(".view-details-btn").addEventListener("click", () => {
                 const detailsContent = `
-                    <span class="close-btn">&times;</span>
+                    <span class="close-btn">X</span>
                     <h2>${mate.facilityName}</h2>
-                    <p>전화번호: ${mate.contact || "정보없음"}</p>
-                    <p>지번주소: ${mate.oldAddress || "정보없음"}</p>
-                    <p>도로명주소: ${mate.newAddress || "정보없음"}</p>
-                    <p>홈페이지: ${
-                        mate.url?.trim() && mate.url !== "정보없음"
-                            ? mate.url
-                            : mate.blogUrl?.trim() && mate.blogUrl !== "정보없음"
-                            ? mate.blogUrl
-                            : mate.facebookUrl?.trim() && mate.facebookUrl !== "정보없음"
-                            ? mate.facebookUrl
-                            : mate.instargramUrl?.trim() && mate.instargramUrl !== "정보없음"
-                            ? mate.instargramUrl
-                            : "정보없음"
-                    }</p>
-                    <p>운영시간: ${mate.businessHours || "정보없음"}</p>
-                    <p>휴무일: ${mate.holiday || "정보없음"}</p>
-                    <p>입장료: ${mate.entryFee || "정보없음"}</p>
+                    <p><strong>전화번호:</strong> ${mate.contact || "정보없음"}</p>
+                    <p><strong>지번주소:</strong> ${mate.oldAddress || "정보없음"}</p>
+                    <p><strong>도로명주소:</strong> ${mate.newAddress || "정보없음"}</p>
+                    <p>
+                        <strong>홈페이지:</strong>
+                        ${
+                            mate.url?.trim() && mate.url !== "정보없음"
+                                ? `<a id="homepage-link" href="${mate.url}" target="_blank">${mate.url}</a>`
+                                : mate.blogUrl?.trim() && mate.blogUrl !== "정보없음"
+                                ? `<a id="blog-link" href="${mate.blogUrl}" target="_blank">${mate.blogUrl}</a>`
+                                : mate.facebookUrl?.trim() && mate.facebookUrl !== "정보없음"
+                                ? `<a id="facebook-link" href="${mate.facebookUrl}" target="_blank">${mate.facebookUrl}</a>`
+                                : mate.instargramUrl?.trim() && mate.instargramUrl !== "정보없음"
+                                ? `<a id="instagram-link" href="${mate.instargramUrl}" target="_blank">${mate.instargramUrl}</a>`
+                                : "정보없음"
+                        }
+                    </p>
+                    <p><strong>운영시간:</strong> ${mate.businessHours || "정보없음"}</p>
+                    <p><strong>휴무일:</strong> ${mate.holiday || "정보없음"}</p>
+                    <p><strong>입장료:</strong> ${mate.entryFee || "정보없음"}</p>
                 `;
 
                 const kidZoneContent = mate.kidZone === "Y" ? `
-                    <p>무료주차: ${mate.freeParking || "정보없음"}</p>
-                    <p>유료주차: ${mate.paidParking || "정보없음"}</p>
-                    <p>입장 가능 나이: ${mate.entryAge || "정보없음"}</p>
-                    <p>가족 화장실: ${mate.familyToilet || "정보없음"}</p>
-                    <p>유모차 대여: ${mate.strollerRental || "정보없음"}</p>
-                    <p>수유실: ${mate.nursingRoom || "정보없음"}</p>
-                    <p>키즈존: ${mate.kidZone || "정보없음"}</p>
+                    <p><strong>무료주차:</strong> ${mate.freeParking || "정보없음"}</p>
+                    <p><strong>유료주차:</strong> ${mate.paidParking || "정보없음"}</p>
+                    <p><strong>입장 가능 나이:</strong> ${mate.entryAge || "정보없음"}</p>
+                    <p><strong>가족 화장실:</strong> ${mate.familyToilet || "정보없음"}</p>
+                    <p><strong>유모차 대여:</strong> ${mate.strollerRental || "정보없음"}</p>
+                    <p><strong>수유실:</strong> ${mate.nursingRoom || "정보없음"}</p>
+                    <p><strong>키즈존:</strong> ${mate.kidZone || "정보없음"}</p>
                 ` : "";
 
                 const petFriendlyContent = mate.petFriendly === "Y" ? `
-                    <p>애견 동반 추가 요금: ${mate.petCompanionFee || "정보없음"}</p>
-                    <p>반려동물 제한사항: ${mate.petRestrictions || "정보없음"}</p>
-                    <p>주차 가능 여부: ${mate.parking || "정보없음"}</p>
-                    <p>실내 장소: ${mate.indoor || "정보없음"}</p>
-                    <p>실외 장소: ${mate.outdoor || "정보없음"}</p>
-                    <p>입장 가능 동물 크기: ${mate.petSize || "정보없음"}</p>
-                    <p>반려동물 동반 가능: ${mate.petFriendly || "정보없음"}</p>
+                    <p><strong>애견 동반 추가 요금:</strong> ${mate.petCompanionFee || "정보없음"}</p>
+                    <p><strong>반려동물 제한사항:</strong> ${mate.petRestrictions || "정보없음"}</p>
+                    <p><strong>주차 가능 여부:</strong> ${mate.parking || "정보없음"}</p>
+                    <p><strong>실내 장소:</strong> ${mate.indoor || "정보없음"}</p>
+                    <p><strong>실외 장소:</strong> ${mate.outdoor || "정보없음"}</p>
+                    <p><strong>입장 가능 동물 크기:</strong> ${mate.petSize || "정보없음"}</p>
+                    <p><strong>반려동물 동반 가능:</strong> ${mate.petFriendly || "정보없음"}</p>
                 ` : "";
 
                 modal.querySelector(".modal-content").innerHTML = detailsContent + kidZoneContent + petFriendlyContent;

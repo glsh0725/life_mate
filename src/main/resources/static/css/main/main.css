@@ -1,10 +1,15 @@
 html {
     scroll-behavior: smooth;
+    background-color: #f3f3f3;
+}
+
+body {
+    margin: 0;
 }
 
 main.fixed {
     width: 100%;
-    height: calc(100vh - 40px);
+    height: calc(100vh);
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scrollbar-width: none;
@@ -18,7 +23,7 @@ main.fixed::-webkit-scrollbar {
 .main-section {
     position: relative;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,30 +38,38 @@ main.fixed::-webkit-scrollbar {
     margin-top: 7%;
     width: 70%;
     height: 55%;
-    background-color: #fff;
-    border: 2px solid #8B4513;
+    background-color: #FFFFFF;
+    border: none;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
 .main-box h2 {
     margin: 0;
     font-size: 24px;
-    color: #8B4513;
+    color: #6A3DC4;
 }
 
 .main-box-header {
     text-align: left;
     margin-bottom: 20px;
-    height: 20%;
 }
 
 .main-box-header p {
     margin: 5px 0;
+    width: 100%;
+    height: 100%;
     font-size: 20px;
     font-weight: 500;
     color: black;
@@ -74,14 +87,16 @@ main.fixed::-webkit-scrollbar {
     justify-content: flex-start;
     padding: 5px 10px;
     margin: 15px 0;
-    border: 1px solid #ddd;
+    border: 1px solid #D4BFEF;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #f6eefc;
     font-size: 18px;
+    color: black;
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.2);
 }
 
 .list li strong {
-    color: #8B4513;
+    color: rgb(150, 97, 255);
     margin-right: 10px;
 }
 
@@ -92,26 +107,26 @@ main.fixed::-webkit-scrollbar {
     padding: 10px 15px;
     font-size: 18px;
     font-weight: bold;
-    color: #fff;
-    background-color: #B49BA0;
+    color: #FFFFFF;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
     text-decoration: none;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
 }
 
 .main-button:hover {
-    background-color: #685858;
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(181, 137, 255, 0.4);
 }
-
 
 .main-slide {
     display: flex;
-    width: 100%;
+    width: 95%;
     height: 40%;
-    position: relative
+    position: relative;
 }
 
 .slide-container1 {
@@ -156,20 +171,21 @@ main.fixed::-webkit-scrollbar {
 .slide-delay-bar {
     flex: 1;
     height: 10px;
-    background-color: #BDBDBD;
+    background-color: #F8E6F8;
     overflow: hidden;
     border-radius: 5px;
 }
 
 .delay-bar-progress {
     height: 100%;
-    background-color: #A07468;
+    background-color: #B589FF;
     transition: width 0.1s linear;
 }
 
 #slide-indicator {
-    font-size: 16px;
-    color: #000;
+    font-size: 18px;
+    font-weight: 550;
+    color: #9080ff;
     white-space: nowrap;
     margin-left: 10px;
 }
@@ -183,32 +199,43 @@ main.fixed::-webkit-scrollbar {
     padding: 5px 10px;
     font-size: 16px;
     font-weight: bold;
-    border: 1px solid #ccc;
-    background-color: #B49BA0;
+    border: 1px solid #C7C4FF;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: #FFFFFF;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .slide-controls button:hover {
-    background-color: #685858;
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+    box-shadow: 0 4px 8px rgba(181, 137, 255, 0.3);
 }
 
 .introduce {
     display: flex;
-    width: 100%;
+    width: 95%;
     height: 40%;
     padding-top: 20px;
+    margin-bottom: 5%;
+}
+
+.introduce h2 {
+    margin-left: 1.5%;
+    color: #6A3DC4;
 }
 
 .intro {
     width: 50%;
     display: flex;
     text-align: left;
-    border: 2px solid #d3d3d3;
+    border: none;
     border-radius: 10px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.3);
     margin-right: 5px;
+    background-color: #FFFFFF;
+    overflow: hidden;
 }
 
 .intro-item {
@@ -222,12 +249,16 @@ main.fixed::-webkit-scrollbar {
 .intro-write {
     display: flex;
     justify-content: center;
-    width: 87%;
+    width: 100%;
     height: 100%;
-    padding-left: 3%;
+    padding: 0 3% 0 3%;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.1;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    box-sizing: border-box;
 }
 
 .detail {
@@ -235,11 +266,13 @@ main.fixed::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     text-align: left;
-    border: 2px solid #d3d3d3;
+    border: none;
     border-radius: 10px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px rgba(212, 191, 239, 0.3);
     margin-left: 5px;
     padding-left: 1%;
+    background-color: #FFFFFF;
+    overflow: hidden;
 }
 
 .detail-list {
@@ -257,37 +290,38 @@ main.fixed::-webkit-scrollbar {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    border: 2px solid #8B4513;
+    border: 1px solid #D4BFEF;
     border-radius: 5px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px rgba(181, 137, 255, 0.3);
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 2%;
     margin-bottom: 2.5%;
+    background-color: #f6eefc;
 }
 
 .detail-item h2 {
     margin: 0;
     font-size: 20px;
-    color: #8B4513;
+    color: rgb(150, 97, 255);
 }
 
 .detail-item .button {
-    display: inline-block;
     padding: 5px 15px;
     font-size: 17px;
     font-weight: bold;
     text-decoration: none;
-    color: #fff;
-    background-color: #B49BA0;
-    border: none;
+    color: #FFFFFF;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detail-item .button:hover {
-    background-color: #685858;
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+    box-shadow: 0 6px 12px rgba(181, 137, 255, 0.4);
 }
 
 .top-button {
@@ -295,18 +329,19 @@ main.fixed::-webkit-scrollbar {
     bottom: 20px;
     right: 20px;
     padding: 10px 15px;
-    background-color: #B49BA0;
-    color: #fff;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: #FFFFFF;
     border: none;
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .top-button:hover {
-    background-color: #685858;
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(181, 137, 255, 0.4);
 }

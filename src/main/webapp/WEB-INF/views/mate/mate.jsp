@@ -52,10 +52,10 @@
     <table>
         <thead>
         <tr>
-            <th>시설명</th>
-            <th>시도/시군구</th>
-            <th>휴무일</th>
-            <th>시설정보</th>
+            <th class="facility">시설명</th>
+            <th class="city">시도/시군구</th>
+            <th class="holiday">휴무일</th>
+            <th class="facility-info">시설정보</th>
         </tr>
         </thead>
         <tbody>

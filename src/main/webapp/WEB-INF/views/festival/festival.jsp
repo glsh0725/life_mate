@@ -75,7 +75,7 @@
         </section>
         <div id="festival-modal" class="modal">
             <div class="modal-content">
-                <span class="close-btn">&times;</span>
+                <span class="close-btn">X</span>
                 <h2 id="modal-title"></h2>
                 <p><strong>개최 장소:</strong> <span id="modal-opar"></span></p>
                 <p><strong>축제 시작일:</strong> <span id="modal-start-date"></span></p>
@@ -85,7 +85,7 @@
                 <p><strong>주관 기관:</strong> <span id="modal-auspcInsttNm"></span></p>
                 <p><strong>후원 기관:</strong> <span id="modal-suprtInsttNm"></span></p>
                 <p><strong>전화번호:</strong> <span id="modal-phoneNumber"></span></p>
-                <p><strong>홈페이지:</strong> <a id="modal-homepage" href="#" target="_blank"></a></p>
+                <p><strong>홈페이지:</strong> <span id="modal-homepage"></span></p>
                 <p><strong>관련 정보:</strong> <span id="modal-relateInfo"></span></p>
                 <p><strong>도로명 주소:</strong> <span id="modal-rdnmadr"></span></p>
                 <p><strong>지번 주소:</strong> <span id="modal-lnmadr"></span></p>

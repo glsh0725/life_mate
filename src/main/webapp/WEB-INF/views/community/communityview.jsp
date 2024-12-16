@@ -13,11 +13,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커뮤니티 글보기</title>
-    <link rel="stylesheet" href="${contextPath}css/community/communityview.css">
+    <link rel="stylesheet" href="${contextPath}/css/community/communityview.css">
     <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 </head>
 <body>
     <main>
+    <form action="${pageContext.request.contextPath}/communityview" method="get" id="communityForm">
         <!-- 게시물 정보 -->
         <div class="post-container">
             <div class="post-header">
@@ -72,6 +73,7 @@
                 <button class="delete-btn" onclick="deletePost(${post.usr_id})">삭제</button>
             </div>
         </div>
+        </form>
     <script src="${contextPath}/js/community/communityview.js"></script>
     </main>
 

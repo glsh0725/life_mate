@@ -11,14 +11,14 @@ public class CommunityViewServiceImpl implements CommunityViewService {
 
     @Autowired
     private CommunityViewDAO communityViewDAO;
-
-    @Override
-    public CommunityViewVO getPostById(int id) {
-        return communityViewDAO.selectPostById(id);
-    }
-
-    @Override
-    public CommunityViewVO getCommunityView(int postId) {
-        return null;
-    }
+//
+//    @Override
+//    public CommunityViewVO getPostById(int id) {
+//        return communityViewDAO.selectPostById(id);
+//    }
+//
+//    @Override
+//    public CommunityViewVO getCommunityView(int postId) {
+//        return null;
+//    }
 }

@@ -66,7 +66,7 @@
                     <td>${user.usr_email_optout}</td>
                     <td>${user.usr_join_date}</td>
                     <td><a href="${contextPath}/admin/removeUser?id=${user.usr_id}"
-                           onclick="return confirmDelete();">삭제하기</a></td>
+                           onclick="return confirmDelete();" class="delete-link">삭제하기</a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -117,7 +117,7 @@
                     <td>${empty community.com_report_count ? 0 : community.com_report_count}건</td>
                     <td>${community.com_post_date}</td>
                     <td><a href="${contextPath}/admin/removeCommunity?number=${community.com_post_number}"
-                           onclick="return confirmDelete();">삭제하기</a></td>
+                           onclick="return confirmDelete();" class="delete-link">삭제하기</a></td>
                 </tr>
             </c:forEach>
         </table>

@@ -1,19 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const communityPage = urlParams.get('communityPage');
-
-    if (communityPage) {
-        openTab(null, 'tab2');
-        loadCommunityPage(communityPage - 1);
-    } else {
-        openTab(null, 'tab1');
-        const firstTabLink = document.getElementsByClassName("tablink")[0];
-        if (firstTabLink) {
-            firstTabLink.classList.add("active");
-        }
-    }
-});
-
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
 
@@ -37,34 +21,73 @@ function openTab(evt, tabName) {
     }
 }
 
-function loadUserPage(page) {
-    currentUserPage = page;
-    $.get(`${contextPath}/admin`, { userPage: page, userSize: 10 })
-        .done(function (data) {
-            $('#usertable tbody').html(data.usersListHTML);
-            generatePagination(currentUserPage, data.totalPages, 'user');
-        });
+function loadCommunityPage(page) {
+    if (document.getElementById("tab2").style.display === "block") {
+        $.get(`${contextPath}/admin`, { communityPage: page, communitySize: 10 })
+            .done(function (data) {
+                $('#communitytable tbody').html(data.communityListHTML);
+                generatePagination(page, data.totalPages, 'community');
+            });
+    }
 }
 
-function loadCommunityPage(page) {
-    currentCommunityPage = page;
-    $.get(`${contextPath}/admin`, { communityPage: page, communitySize: 10 })
-        .done(function (data) {
-            $('#communitytable tbody').html(data.communityListHTML);
-            generatePagination(currentCommunityPage, data.totalPages, 'community');
-        });
+function handleCommunityPaging(page) {
+    openTab(null, 'tab2');
+    loadCommunityPage(page);
 }
 
 function generatePagination(currentPage, totalPages, type) {
     let pagination = '';
     for (let i = 0; i < totalPages; i++) {
-        if (i === currentPage) {
-            pagination += `<a href="javascript:void(0);" class="active">${i + 1}</a> `;
-        } else {
-            pagination += `<a href="javascript:void(0);" onclick="load${type.charAt(0).toUpperCase() + type.slice(1)}Page(${i})">${i + 1}</a> `;
-        }
+        pagination += `<a href="javascript:void(0);" onclick="handleCommunityPaging(${i})">${i + 1}</a> `;
     }
+    if (type === 'community') {
+        $('#communityPagination').html(pagination);
+    }
+}
 
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const communityPage = urlParams.get('communityPage');
+    if (communityPage) {
+        openTab(null, 'tab2');
+        loadCommunityPage(communityPage - 1);
+    } else {
+        openTab(null, 'tab1');
+        loadUserPage(0);
+    }
+};
+
+document.getElementById("tab1").style.display = "block";
+document.getElementsByClassName("tablink")[0].className += " active";
+
+function loadUserPage(page) {
+    currentUserPage = page;
+    if (document.getElementById("tab1").style.display === "block") {
+        $.get(`${contextPath}/admin`, { userPage: page, userSize: 10 })
+            .done(function (data) {
+                $('#usertable tbody').html(data.usersListHTML);
+                generatePagination(currentUserPage, data.totalPages, 'user');
+            });
+    }
+}
+
+function loadCommunityPage(page) {
+    currentCommunityPage = page;
+    if (document.getElementById("tab2").style.display === "block") {
+        $.get(`${contextPath}/admin`, { communityPage: page, communitySize: 10 })
+            .done(function (data) {
+                $('#communitytable tbody').html(data.communityListHTML);
+                generatePagination(currentCommunityPage, data.totalPages, 'community');
+            });
+    }
+}
+
+function generatePagination(currentPage, totalPages, type) {
+    let pagination = '';
+    for (let i = 0; i < totalPages; i++) {
+        pagination += `<a href="javascript:void(0);" onclick="load${type.charAt(0).toUpperCase() + type.slice(1)}Page(${i})">${i + 1}</a> `;
+    }
     if (type === 'user') {
         $('#userPagination').html(pagination);
     } else if (type === 'community') {
@@ -78,6 +101,7 @@ $(document).on('click', '.pagination-link', function(event) {
     loadCommunityPage(targetPage);
 });
 
+// 삭제 확인
 function confirmDelete() {
     return confirm("정말로 삭제하시겠습니까?");
 }
@@ -107,7 +131,9 @@ $(document).on("click", ".delete-link", function (e) {
     }
 });
 
+// 검색 리스트
 function getSearchList() {
+
     event.preventDefault();
 
     $.ajax({
@@ -115,6 +141,7 @@ function getSearchList() {
         url: "/admin/userlist",
         contentType: "application/json; charset=UTF-8",
         success: function (data) {
+
             var searchType = $("#search-type").val();
             var searchKeyword = $("#search-user").val();
 
@@ -141,7 +168,9 @@ function getSearchList() {
                 return;
             }
 
+            // 테이블 초기화
             $("#usertable").empty();
+
 
             let tablelist = `
             <table>
@@ -159,6 +188,7 @@ function getSearchList() {
                 <tbody>
             `;
 
+            // 데이터 추가
             data.forEach(user => {
                 tablelist += `
                 <tr align="center">
@@ -178,6 +208,7 @@ function getSearchList() {
             tablelist += `</tbody></table>`;
 
             $("#usertable").html(tablelist);
+
         },
         error: function (xhr, status, error) {
             alert("user :" + xhr.status + "\n"
@@ -185,9 +216,12 @@ function getSearchList() {
                 + "error: " + error);
         }
     });
+
 }
 
+
 function getSearchList2() {
+
     event.preventDefault();
 
     $.ajax({
@@ -195,6 +229,7 @@ function getSearchList2() {
         url: "/admin/communitylist",
         contentType: "application/json; charset=UTF-8",
         success: function (data) {
+
             var searchType = $("#search-type2").val();
             var searchKeyword = $("#search-community").val();
 
@@ -237,6 +272,7 @@ function getSearchList2() {
             `;
 
             data.forEach(community => {
+
                 const formattedDate = community.com_post_date
                     ? formatDate(community.com_post_date)
                     : "N/A";
@@ -273,4 +309,5 @@ function getSearchList2() {
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     }
+
 }

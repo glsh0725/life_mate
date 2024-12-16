@@ -14,7 +14,10 @@ public class CommunityViewControllerImpl {
     @Autowired
     private CommunityViewService communityViewService;
 
-    @GetMapping("/communityview")
+    @Autowired
+    private CommunityViewVO communityViewVO;
+
+    @GetMapping("community/communityview")
     public String communityviewPage() {
         return "community/communityview";
     }

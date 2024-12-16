@@ -49,12 +49,12 @@
             </div>
 
             <div class="form-group">
-                <label for="image">이미지 첨부</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <label for="image">대표 이미지</label>
+                <input type="file" id="image" name="file" accept="image/*">
             </div>
 
             <div class="form-group">
-                <label for="video">동영상 첨부</label>
+                <label for="video">이미지 첨부</label>
                 <input type="file" id="video" name="video" accept="video/*">
             </div>
 

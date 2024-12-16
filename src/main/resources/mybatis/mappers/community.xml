@@ -12,8 +12,8 @@
 
     <insert id="insertCommunityWrite" parameterType="fs.four.dropout.community.vo.CommunityWriteVO" useGeneratedKeys="true" keyProperty="com_post_number">
         <![CDATA[
-        insert into lm_community(com_post_number, com_title, usr_id, usr_nickname, com_location, com_content, com_duration)
-        values (post_seq.nextval, #{com_title}, #{usr_id, jdbcType=VARCHAR}, #{usr_nickname, jdbcType=VARCHAR}, #{com_location}, #{com_content}, #{com_duration})
+        insert into lm_community(com_post_number, com_title, usr_id, usr_nickname, com_location, com_content, com_duration, com_thumbnail_path)
+        values (post_seq.nextval, #{com_title}, #{usr_id, jdbcType=VARCHAR}, #{usr_nickname, jdbcType=VARCHAR}, #{com_location}, #{com_content}, #{com_duration}, #{com_thumbnail_path})
     ]]>
     </insert>
 

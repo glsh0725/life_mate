@@ -16,4 +16,6 @@ public interface CommunityViewController {
                                           HttpServletResponse response,
                                           HttpSession session,
                                           RedirectAttributes redirectAttributes) throws Exception;
+
+    public String communityviewPage() throws Exception;
 }

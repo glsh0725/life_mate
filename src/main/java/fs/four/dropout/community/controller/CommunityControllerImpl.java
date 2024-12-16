@@ -38,10 +38,5 @@ public class CommunityControllerImpl implements CommunityController {
         mav.addObject("postsList", postsList);
         return mav;
     }
-
-    @GetMapping("/community/save")
-    public String communitySave() {
-        return "community/save";
-    }
 }
 

@@ -1,6 +1,10 @@
+html {
+    scroll-behavior: smooth;
+    background-color: #f3f3f3;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #FFF8E1;
     color: #5D4037;
     margin: 0;
     padding: 0;
@@ -8,18 +12,16 @@ body {
 
 main {
     padding: 20px;
-    margin: 20px auto;
+    margin: 120px auto 20px;
     max-width: 1200px;
-    background-color: #FFFFFF;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(212, 191, 239, 0.3);
 }
 
 .tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 .tablink {
@@ -27,28 +29,25 @@ main {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #FFAB40;
-    color: #FFFFFF;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: #fff;
     border: none;
     border-radius: 10px 10px 0 0;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/*.tablink:hover,*/
-/*.tablink.active {*/
-/*    background-color: #FF7043;*/
-/*    transform: translateY(-2px);*/
-/*}*/
+.tablink:hover, .tablink.active {
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+}
 
 .tabcontent {
     display: none;
     padding: 20px;
-    background-color: #FFFFFF;
-    border: 1px solid #DDD;
-    border-top: none;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 1px solid #D4BFEF;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(212, 191, 239, 0.3);
 }
 
 table {
@@ -58,15 +57,14 @@ table {
 }
 
 table thead {
-    background-color: #C8E6C9;
-    color: #5D4037;
+    background-color: #f6eefc;
+    color: #6A3DC4;
 }
 
-table th,
-table td {
+table th, table td {
     text-align: center;
     padding: 12px;
-    border: 1px solid #DDD;
+    border: 1px solid #D4BFEF;
     font-size: 14px;
 }
 
@@ -90,25 +88,25 @@ form[name="search-form"] input[type="text"],
 form[name="search-form"] input[type="button"] {
     padding: 10px;
     font-size: 14px;
-    border: 1px solid #CCC;
+    border: 1px solid #C7C4FF;
     border-radius: 5px;
 }
 
 form[name="search-form"] input[type="button"] {
-    background-color: #FFAB40;
-    color: #FFFFFF;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
+    color: #fff;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
 
 form[name="search-form"] input[type="button"]:hover {
-    background-color: #FF7043;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
+    box-shadow: 0 4px 8px rgba(212, 191, 239, 0.3);
 }
 
 a.delete-link {
-    color: #FF7043;
+    color: #B589FF;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -116,7 +114,7 @@ a.delete-link {
 
 a.delete-link:hover {
     text-decoration: underline;
-    color: #D32F2F;
+    color: #9080FF;
 }
 
 @media (max-width: 768px) {
@@ -148,7 +146,7 @@ a.delete-link:hover {
     padding: 8px 15px;
     font-size: 14px;
     font-weight: bold;
-    background-color: #FFAB40;
+    background: linear-gradient(45deg, #a8a4f8, #ecc5ec);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -157,14 +155,12 @@ a.delete-link:hover {
 }
 
 .pagination a:hover {
-    background-color: #FF7043;
-    /*transform: translateY(-2px);*/
+    background: linear-gradient(45deg, #B589FF, #A77BEF);
 }
 
 .pagination a.active {
-    background-color: #FF7043;
+    background: linear-gradient(45deg, #9080FF, #9080FF);
     color: white;
-    /*transform: translateY(-2px);*/
 }
 
 .pagination a.disabled {
